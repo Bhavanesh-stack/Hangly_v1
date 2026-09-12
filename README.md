@@ -10,11 +10,16 @@ A charm hangs from your menu bar on a simulated rope. Nudge it and it swings,
 carries momentum, and settles — because it is real physics, not a looping
 animation.
 
+<br>
+
 <a href="https://github.com/sharancreatedthis/Hangly/releases/latest/download/Hangly.dmg">
-  <img src="https://img.shields.io/badge/Download%20Hangly-black?style=for-the-badge&logo=apple&logoColor=white" height="44" alt="Download Hangly for macOS — direct disk image download">
+  <img src="https://img.shields.io/badge/Download%20Hangly-1A38AD?style=for-the-badge&logo=apple&logoColor=white" height="64" alt="Download Hangly for macOS — direct disk image download">
 </a>
 
 <sub>macOS 14 or later · Apple Silicon · 5.2 MB</sub>
+
+<br>
+<br>
 
 [![Build](https://github.com/sharancreatedthis/Hangly/actions/workflows/build.yml/badge.svg)](https://github.com/sharancreatedthis/Hangly/actions/workflows/build.yml)
 [![Platform](https://img.shields.io/badge/platform-macOS%2014%2B-black)](#requirements)
