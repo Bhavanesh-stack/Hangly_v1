@@ -257,6 +257,7 @@
 		F11BA1D63F3C9F36B977F89F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F13E622DA99FCCEA064C80C6 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
 		F3022FFCC0E0FBC6A1704875 /* CharmTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmTests.swift; sourceTree = "<group>"; };
+		F39726846A590C938E2FAB46 /* v1.0.0.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = v1.0.0.md; sourceTree = "<group>"; };
 		F4297A8DED66267A2755D038 /* FAQ.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FAQ.md; sourceTree = "<group>"; };
 		F677E4714E9BA9CD586DE885 /* CharmLibraryGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmLibraryGrid.swift; sourceTree = "<group>"; };
 		F837209F6267682DA076362C /* CharmStudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharmStudioTests.swift; sourceTree = "<group>"; };
@@ -280,6 +281,7 @@
 		54E0944C512C12022DDDE8A7 /* Docs */ = {
 			isa = PBXGroup;
 			children = (
+				E067BA590B1AB6F1D4F7DDD5 /* release-notes */,
 				D4462D1040D9EC7D09D156EC /* Architecture.md */,
 				70F9FADACE54E74006950B28 /* Charm-System.md */,
 				436C2A95A4393CA8F4849A01 /* DISTRIBUTION.md */,
@@ -491,6 +493,14 @@
 			path = Charms;
 			sourceTree = "<group>";
 		};
+		E067BA590B1AB6F1D4F7DDD5 /* release-notes */ = {
+			isa = PBXGroup;
+			children = (
+				F39726846A590C938E2FAB46 /* v1.0.0.md */,
+			);
+			path = "release-notes";
+			sourceTree = "<group>";
+		};
 		E2038F3964C8695A276F820B /* MenuBar */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,7 +664,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" = \"Production\" ]; then\n  echo \"note: SwiftLint skipped for the Production configuration.\"\n  exit 0\nfi\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:/Users/sharan/.antigravity-ide/antigravity-ide/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/Users/sharan/.antigravity/antigravity/bin:/Users/sharan/.local/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/pkg/env/global/bin://Applications/Topaz Gigapixel.app/Contents/Resources/bin://Applications/Topaz Photo.app/Contents/Resources/bin:/Library/Apple/usr/bin:/Users/sharan/.antigravity-ide/antigravity-ide/bin:/Users/sharan/.cache/plugins/.install-staging/4cf3c26aa6bbfc681b29e3c7b1fbf50f91a11a0e/claude-code/repo/bin:/Users/sharan/.claude/plugins/cache/claude-plugins-official/figma/2.2.108/bin\"\nif command -v swiftlint >/dev/null 2>&1; then\n  swiftlint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed. Install it with: brew install swiftlint\"\nfi\n";
+			shellScript = "if [ \"${CONFIGURATION}\" = \"Production\" ]; then\n  echo \"note: SwiftLint skipped for the Production configuration.\"\n  exit 0\nfi\n# $PATH without braces: XcodeGen substitutes ${VAR} at generation time,\n# which would bake this machine's whole PATH into project.pbxproj.\nexport PATH=\"/opt/homebrew/bin:/usr/local/bin:$PATH\"\nif command -v swiftlint >/dev/null 2>&1; then\n  swiftlint --config \"${SRCROOT}/.swiftlint.yml\"\nelse\n  echo \"warning: SwiftLint not installed. Install it with: brew install swiftlint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

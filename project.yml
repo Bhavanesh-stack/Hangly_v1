@@ -141,7 +141,9 @@ targets:
             echo "note: SwiftLint skipped for the Production configuration."
             exit 0
           fi
-          export PATH="/opt/homebrew/bin:/usr/local/bin:${PATH}"
+          # $PATH without braces: XcodeGen substitutes ${VAR} at generation time,
+          # which would bake this machine's whole PATH into project.pbxproj.
+          export PATH="/opt/homebrew/bin:/usr/local/bin:$PATH"
           if command -v swiftlint >/dev/null 2>&1; then
             swiftlint --config "${SRCROOT}/.swiftlint.yml"
           else
