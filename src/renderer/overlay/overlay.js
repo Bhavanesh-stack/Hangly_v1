@@ -12,6 +12,7 @@ const { ClassicCharms } = require('../../shared/charms/classic-charms');
 const { Splitter } = require('../../shared/charms/splitter');
 const { SoundPlayer } = require('../../shared/audio/synthesizer');
 const { CustomCharmStore } = require('../../shared/charms/custom-store');
+const { getCharmSvgPath } = require('../../shared/charms/asset-resolver');
 
 const canvas = document.getElementById('rope-canvas');
 const ctx = canvas.getContext('2d', { alpha: true });
@@ -99,10 +100,10 @@ function loadSvgCharm(charm) {
 
   const promise = new Promise((resolve) => {
     const filename = charm.svgFile || `${charm.name}.svg`;
-    const svgPath = path.join(__dirname, '..', '..', '..', 'assets', 'charms', filename);
+    const svgPath = getCharmSvgPath(filename);
     
-    if (!fs.existsSync(svgPath)) {
-      console.warn('SVG file not found:', svgPath);
+    if (!svgPath || !fs.existsSync(svgPath)) {
+      console.warn('SVG file not found for charm:', charm.name, filename, svgPath);
       svgCache[charm.id] = { loaded: false };
       return resolve(svgCache[charm.id]);
     }
@@ -530,6 +531,37 @@ function drawCharm(snapshot) {
         const dh = radius * 2;
         ctx.drawImage(entry.rasterCanvas, 0, 0, rSize, rSize, -dw / 2, -dh / 2, dw, dh);
       }
+
+      ctx.restore();
+    } else {
+      // Elegant fallback rendering while SVG is loading or if raster not ready
+      ctx.save();
+      ctx.translate(center.x, center.y);
+      ctx.rotate(rotation);
+
+      const p = currentCharm.palette || {
+        primary: CharmColor.rgb(0.9, 0.6, 0.2),
+        secondary: CharmColor.rgb(0.7, 0.4, 0.1),
+        deep: CharmColor.rgb(0.35, 0.2, 0.05),
+        light: CharmColor.rgb(1.0, 0.9, 0.6)
+      };
+
+      const grad = ctx.createRadialGradient(-radius * 0.3, -radius * 0.3, 0, 0, 0, radius);
+      grad.addColorStop(0, CharmColor.toCss(p.light));
+      grad.addColorStop(0.55, CharmColor.toCss(p.primary));
+      grad.addColorStop(1, CharmColor.toCss(p.secondary));
+
+      ctx.beginPath();
+      ctx.arc(0, 0, radius, 0, Math.PI * 2);
+      ctx.fillStyle = grad;
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.35)';
+      ctx.shadowBlur = radius * 0.3;
+      ctx.shadowOffsetY = radius * 0.15;
+      ctx.fill();
+
+      ctx.strokeStyle = CharmColor.toCss({ ...p.light, a: 0.8 });
+      ctx.lineWidth = Math.max(1.5, radius * 0.08);
+      ctx.stroke();
 
       ctx.restore();
     }

@@ -300,3 +300,36 @@ input:checked + .slider:before {
   padding: 6px 0;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
+
+.dropdown-select {
+  background-color: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-family: inherit;
+  cursor: pointer;
+  outline: none;
+  min-width: 170px;
+  transition: border-color 0.2s ease;
+}
+
+.dropdown-select:hover,
+.dropdown-select:focus {
+  border-color: var(--accent);
+}
+
+.dropdown-select optgroup {
+  font-weight: 700;
+  color: var(--accent);
+  background: var(--surface);
+}
+
+.dropdown-select option {
+  font-weight: normal;
+  color: var(--text);
+  background: var(--surface);
+  padding: 4px 8px;
+}
+

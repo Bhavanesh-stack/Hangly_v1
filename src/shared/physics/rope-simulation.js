@@ -136,6 +136,14 @@ class RopeSimulation {
     this.enforceMaximumStretch();
     this.refreshCord();
     this.advanceBeads(timeStep);
+
+    // Safety: ensure chain does not get inverted or stuck above anchor
+    if (!this.isDragging && this.points.length > 1) {
+      const last = this.points[this.points.length - 1];
+      if (last.position.y < this.anchor.y + 10) {
+        this.reset();
+      }
+    }
   }
 
   enforceAnchor() {

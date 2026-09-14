@@ -4,6 +4,7 @@
 const { app, Tray, Menu, nativeImage } = require('electron');
 const path = require('path');
 const { CharmCatalog } = require('../shared/charms/catalog');
+const { getIconPath } = require('../shared/charms/asset-resolver');
 
 class HanglyTray {
   constructor(appContext) {
@@ -13,10 +14,10 @@ class HanglyTray {
   }
 
   init() {
-    const iconPath = path.join(__dirname, '..', '..', 'assets', 'icons', 'hangly.ico');
+    const iconPath = getIconPath('hangly.ico');
     let icon = nativeImage.createFromPath(iconPath);
     if (icon.isEmpty()) {
-      const pngPath = path.join(__dirname, '..', '..', 'assets', 'icons', 'hangly-icon-128.png');
+      const pngPath = getIconPath('hangly-icon-128.png');
       icon = nativeImage.createFromPath(pngPath).resize({ width: 16, height: 16 });
     }
 

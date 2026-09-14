@@ -6,7 +6,7 @@
   "scripts": {
     "start": "electron .",
     "test:physics": "node test/physics.test.js",
-    "build:dir": "electron-packager . Hangly --platform=win32 --arch=x64 --out=dist --icon=assets/icons/hangly.ico --overwrite --prune=true",
+    "build:dir": "electron-packager . Hangly --platform=win32 --arch=x64 --out=dist --icon=Assets/Icons/hangly.ico --overwrite --prune=true",
     "build:portable": "electron-builder --win portable",
     "build:installer": "electron-builder --win nsis",
     "build:exe": "electron-builder --win portable"
@@ -18,7 +18,7 @@
       "output": "dist"
     },
     "win": {
-      "icon": "assets/icons/hangly.ico",
+      "icon": "Assets/Icons/hangly.ico",
       "target": [
         {
           "target": "portable",
@@ -33,6 +33,7 @@
     },
     "files": [
       "src/**/*",
+      "Assets/**/*",
       "assets/**/*",
       "package.json"
     ]

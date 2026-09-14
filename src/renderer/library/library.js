@@ -7,12 +7,13 @@ const { CharmCatalog, getCharmById } = require('../../shared/charms/catalog');
 const { ClassicCharms } = require('../../shared/charms/classic-charms');
 const { RopeSimulation } = require('../../shared/physics/rope-simulation');
 const { RopeConfiguration } = require('../../shared/physics/rope-configuration');
+const { getCharmSvgPath, getCharmLibraryJsonPath } = require('../../shared/charms/asset-resolver');
 
 // Load metadata
 let libraryMetadata = { charms: [] };
 try {
-  const jsonPath = path.join(__dirname, '..', '..', '..', 'assets', 'CharmLibrary.json');
-  if (fs.existsSync(jsonPath)) {
+  const jsonPath = getCharmLibraryJsonPath();
+  if (jsonPath && fs.existsSync(jsonPath)) {
     libraryMetadata = JSON.parse(fs.readFileSync(jsonPath, 'utf8'));
   }
 } catch (e) {
@@ -92,7 +93,7 @@ function getSvgDataUrl(svgPath) {
     if (charm.type === 'svg') {
       const img = document.createElement('img');
       const filename = charm.svgFile || `${charm.name}.svg`;
-      const svgPath = path.join(__dirname, '..', '..', '..', 'assets', 'charms', filename);
+      const svgPath = getCharmSvgPath(filename);
       img.src = getSvgDataUrl(svgPath);
       iconWrap.appendChild(img);
     } else if (charm.type === 'custom') {
@@ -195,7 +196,7 @@ let previewImg = new Image();
 function updatePreviewImg() {
   if (selectedCharm.type === 'svg') {
     const filename = selectedCharm.svgFile || `${selectedCharm.name}.svg`;
-    const svgPath = path.join(__dirname, '..', '..', '..', 'assets', 'charms', filename);
+    const svgPath = getCharmSvgPath(filename);
     previewImg.src = getSvgDataUrl(svgPath);
   } else if (selectedCharm.type === 'custom') {
     previewImg.src = `file://${selectedCharm.imagePath.replace(/\\/g, '/')}`;

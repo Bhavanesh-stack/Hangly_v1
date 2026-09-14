@@ -54,6 +54,11 @@ function calculateOverlayBounds() {
       break;
   }
 
+  // Safety clamp to ensure overlay always stays visible on screen
+  const minVisible = Math.min(200, width / 2);
+  x = Math.max(bounds.x - width + minVisible, Math.min(bounds.x + bounds.width - minVisible, x));
+  y = Math.max(bounds.y - 30, Math.min(bounds.y + bounds.height - 120, y));
+
   return { x, y, width, height };
 }
 

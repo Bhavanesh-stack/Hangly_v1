@@ -1,5 +1,6 @@
 // src/renderer/settings/settings.js
 const { ipcRenderer } = require('electron');
+const { CharmCatalog } = require('../../shared/charms/catalog');
 
 // Tabs
 document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -34,11 +35,47 @@ const offsetYVal = document.getElementById('offset-y-val');
 const clickThrough = document.getElementById('click-through');
 const screenEdge = document.getElementById('screen-edge');
 const btnReset = document.getElementById('btn-reset');
+const charmSelect = document.getElementById('charm-select');
+
+function initCharmSelect() {
+  if (!charmSelect) return;
+  charmSelect.innerHTML = '';
+
+  const groupSvg = document.createElement('optgroup');
+  groupSvg.label = 'The Hangly Collection (SVG)';
+
+  const groupClassic = document.createElement('optgroup');
+  groupClassic.label = 'The Classics (Geometric)';
+
+  CharmCatalog.forEach(c => {
+    const opt = document.createElement('option');
+    opt.value = c.id;
+    opt.textContent = c.name + (c.type === 'svg' ? '' : ' (Geometric)');
+    if (c.type === 'svg') {
+      groupSvg.appendChild(opt);
+    } else {
+      groupClassic.appendChild(opt);
+    }
+  });
+
+  charmSelect.appendChild(groupSvg);
+  charmSelect.appendChild(groupClassic);
+
+  charmSelect.addEventListener('change', () => {
+    const charmId = charmSelect.value;
+    ipcRenderer.invoke('select-charm', charmId).then(populate);
+  });
+}
+initCharmSelect();
 
 let settings = {};
 
 function populate(s) {
   settings = s;
+
+  if (charmSelect && s.overlay.charmId) {
+    charmSelect.value = s.overlay.charmId;
+  }
 
   overlayEnabled.checked = !!s.overlay.isEnabled;
   soundEnabled.checked = !!s.sound.enabled;
