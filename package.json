@@ -6,7 +6,36 @@
   "scripts": {
     "start": "electron .",
     "test:physics": "node test/physics.test.js",
-    "build:exe": "electron-packager . Hangly --platform=win32 --arch=x64 --out=dist --icon=assets/icons/hangly.ico --overwrite --prune=true"
+    "build:dir": "electron-packager . Hangly --platform=win32 --arch=x64 --out=dist --icon=assets/icons/hangly.ico --overwrite --prune=true",
+    "build:portable": "electron-builder --win portable",
+    "build:installer": "electron-builder --win nsis",
+    "build:exe": "electron-builder --win portable"
+  },
+  "build": {
+    "appId": "com.hangly.desktop",
+    "productName": "Hangly",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "icon": "assets/icons/hangly.ico",
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ]
+    },
+    "portable": {
+      "artifactName": "Hangly-Portable.exe"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "package.json"
+    ]
   },
   "keywords": [
     "desktop-companion",
@@ -19,6 +48,7 @@
   "license": "MIT",
   "devDependencies": {
     "@electron/packager": "^19.0.3",
-    "electron": "^34.3.0"
+    "electron": "^34.3.0",
+    "electron-builder": "^25.1.8"
   }
 }

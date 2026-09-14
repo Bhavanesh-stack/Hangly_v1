@@ -66,36 +66,45 @@ npm install
 
 ---
 
-### Step 3: Run Hangly
+### Option 1: Direct Double-Click (No Node.js or Terminal Required)
 
-To launch Hangly in development/desktop mode:
+Hangly builds as a 100% native standalone Windows binary. You can run it directly:
+
+1. **Single-File Portable Executable**:
+   - Double-click **`dist/Hangly-Portable.exe`**.
+   - A single, self-contained executable with zero dependencies — no installation, no terminal window, and no Node.js required.
+2. **Desktop Shortcut**:
+   - Double-click the **`Hangly`** shortcut on your Desktop.
+3. **Unpacked Application Folder**:
+   - Double-click **`dist/Hangly-win32-x64/Hangly.exe`**.
+
+---
+
+### Option 2: Running from Source (Developer Mode)
+
+If you are modifying code and want hot-reloading:
 
 ```powershell
+npm install
 npm start
 ```
 
-*Or simply double-click **`Launch-Hangly.cmd`** in the repository root.*
-
-The Hangly charm will appear at the top-right of your screen, and the Hangly icon will be active in your Windows System Tray (near your taskbar clock).
+*Or double-click `Launch-Hangly.cmd` in the repository root.*
 
 ---
 
-### Step 4: Build Standalone Windows Executable (`.exe`)
+### Option 3: Building the Executables
 
-To package Hangly into a completely standalone portable Windows `.exe` that runs without requiring Node.js installed:
+To build fresh executables from source:
 
-```powershell
-npm run build:exe
-```
-
-The packaged application will be generated in:
-```text
-dist/Hangly-win32-x64/Hangly.exe
-```
-
-You can move this folder anywhere or create a shortcut to `Hangly.exe` on your Desktop / Start Menu.
-
----
+- **Build Single Portable `.exe` (`Hangly-Portable.exe`)**:
+  ```powershell
+  npm run build:portable
+  ```
+- **Build Unpacked Folder Distribution**:
+  ```powershell
+  npm run build:dir
+  ```
 
 ## 🎮 How to Use
 
