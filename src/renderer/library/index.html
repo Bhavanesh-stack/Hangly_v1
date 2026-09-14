@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Charm Library</title>
+  <link rel="stylesheet" href="library.css">
+</head>
+<body>
+  <div class="library-layout">
+    <!-- Left: Catalog & Filter -->
+    <div class="catalog-panel">
+      <header class="catalog-header">
+        <h1>Charm Library</h1>
+        <div class="filter-chips">
+          <button class="chip active" data-cat="all">All</button>
+          <button class="chip" data-cat="protection">Protection</button>
+          <button class="chip" data-cat="luck">Luck & Fortune</button>
+          <button class="chip" data-cat="ritual">Ritual & Home</button>
+          <button class="chip" data-cat="classic">Classic</button>
+          <button class="chip" data-cat="custom">Custom</button>
+        </div>
+      </header>
+
+      <div class="charm-grid" id="charm-grid">
+        <!-- Charm Cards populated by library.js -->
+      </div>
+    </div>
+
+    <!-- Right: Charm Detail Pane -->
+    <aside class="detail-panel" id="detail-panel">
+      <div class="preview-stage">
+        <canvas id="detail-canvas" width="220" height="240"></canvas>
+      </div>
+
+      <div class="detail-info">
+        <div class="detail-title-row">
+          <h2 id="detail-name">Daruma</h2>
+          <span class="category-tag" id="detail-category">Luck & Fortune</span>
+        </div>
+        <p class="detail-region" id="detail-region">Japan</p>
+        <p class="detail-desc" id="detail-desc">A round, weighted doll modelled on the monk Bodhidharma. You paint one eye while making a wish and the other when it comes true, and it always rights itself when knocked over.</p>
+
+        <div class="tags-container" id="detail-tags">
+          <!-- Tags -->
+        </div>
+
+        <div class="specs-grid">
+          <div class="spec-item">
+            <span class="spec-label">Weight</span>
+            <span class="spec-val" id="detail-mass">3.65</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Material</span>
+            <span class="spec-val" id="detail-sound">Wood</span>
+          </div>
+          <div class="spec-item">
+            <span class="spec-label">Beads</span>
+            <span class="spec-val" id="detail-beads">3</span>
+          </div>
+        </div>
+
+        <button id="btn-hang-charm" class="primary-btn">Hang this Charm</button>
+      </div>
+    </aside>
+  </div>
+  <script src="library.js"></script>
+</body>
+</html>

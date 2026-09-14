@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hangly Settings</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div class="settings-container">
+    <header class="header">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="general">General</button>
+        <button class="tab-btn" data-tab="placement">Placement</button>
+        <button class="tab-btn" data-tab="about">About</button>
+      </div>
+    </header>
+
+    <main class="content">
+      <!-- General Tab -->
+      <section id="tab-general" class="tab-pane active">
+        <div class="section-card">
+          <div class="section-title">Overlay</div>
+          <div class="control-row">
+            <div class="control-label">
+              <span>Show overlay</span>
+              <small>Floats on your screen and swings on a simulated rope.</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="overlay-enabled">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">Sound</div>
+          <div class="control-row">
+            <div class="control-label">
+              <span>Play sound effects</span>
+              <small>Charms sound when you swing or switch them.</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="sound-enabled">
+              <span class="slider round"></span>
+            </label>
+          </div>
+          <div class="control-row" id="volume-row">
+            <div class="control-label">
+              <span>Volume</span>
+              <span class="value-badge" id="volume-val">100%</span>
+            </div>
+            <input type="range" id="sound-volume" min="0" max="100" value="100" class="range-slider">
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">Startup</div>
+          <div class="control-row">
+            <div class="control-label">
+              <span>Launch Hangly at login</span>
+              <small>Starts automatically in the system tray.</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="launch-at-login">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- Placement Tab -->
+      <section id="tab-placement" class="tab-pane">
+        <div class="section-card">
+          <div class="section-title">Position & Scale</div>
+          <div class="control-row">
+            <div class="control-label">
+              <span>Screen position</span>
+            </div>
+            <div class="segmented-control">
+              <button class="seg-btn" data-anchor="topLeading">Top Left</button>
+              <button class="seg-btn" data-anchor="topCenter">Top Center</button>
+              <button class="seg-btn active" data-anchor="topTrailing">Top Right</button>
+            </div>
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Scale</span>
+              <span class="value-badge" id="scale-val">1.0x</span>
+            </div>
+            <input type="range" id="overlay-scale" min="50" max="200" value="100" class="range-slider">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Opacity</span>
+              <span class="value-badge" id="opacity-val">100%</span>
+            </div>
+            <input type="range" id="overlay-opacity" min="20" max="100" value="100" class="range-slider">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Horizontal offset</span>
+              <span class="value-badge" id="offset-x-val">12 px</span>
+            </div>
+            <input type="range" id="overlay-offset-x" min="-300" max="300" value="12" class="range-slider">
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Vertical offset</span>
+              <span class="value-badge" id="offset-y-val">-12 px</span>
+            </div>
+            <input type="range" id="overlay-offset-y" min="-100" max="300" value="-12" class="range-slider">
+          </div>
+        </div>
+
+        <div class="section-card">
+          <div class="section-title">Behaviour</div>
+          <div class="control-row">
+            <div class="control-label">
+              <span>Let clicks pass through</span>
+              <small>Passes mouse clicks directly to apps behind the rope.</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="click-through">
+              <span class="slider round"></span>
+            </label>
+          </div>
+
+          <div class="control-row">
+            <div class="control-label">
+              <span>Hang from screen edge</span>
+              <small>Anchor directly against display border.</small>
+            </div>
+            <label class="switch">
+              <input type="checkbox" id="screen-edge">
+              <span class="slider round"></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="action-footer">
+          <button id="btn-reset" class="secondary-btn">Reset All Settings</button>
+        </div>
+      </section>
+
+      <!-- About Tab -->
+      <section id="tab-about" class="tab-pane">
+        <div class="about-hero">
+          <img src="../../../assets/icons/hangly-icon-128.png" alt="Hangly Icon" class="about-icon">
+          <h2>Hangly</h2>
+          <p class="about-tagline">A tiny piece of motion for your desktop.</p>
+          <span class="about-version">Version 1.0.0 (Windows)</span>
+        </div>
+        <div class="section-card">
+          <p class="about-desc">
+            A charm hangs from your screen on a 20-segment Verlet-simulated rope at 240 Hz. Nudge it and it swings, carries momentum, and settles with real physics.
+          </p>
+          <div class="meta-row">
+            <span>Original Creator</span>
+            <strong>sharancreatedthis</strong>
+          </div>
+          <div class="meta-row">
+            <span>License</span>
+            <strong>MIT License</strong>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="settings.js"></script>
+</body>
+</html>

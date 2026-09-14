@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Charm Studio</title>
+  <link rel="stylesheet" href="studio.css">
+</head>
+<body>
+  <div class="studio-layout">
+    <!-- Left: Creator Controls -->
+    <div class="controls-panel">
+      <h1>Charm Studio</h1>
+      <p class="subtitle">Drop an image to create your own custom hanging charm.</p>
+
+      <div class="drop-zone" id="drop-zone">
+        <input type="file" id="file-input" accept="image/png,image/jpeg,image/webp,image/svg+xml" style="display:none">
+        <div class="drop-content" id="drop-content">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+            <polyline points="17 8 12 3 7 8"/>
+            <line x1="12" y1="3" x2="12" y2="15"/>
+          </svg>
+          <span class="drop-text">Click or drop an image here</span>
+          <small>PNG with transparency recommended</small>
+        </div>
+        <img id="image-preview" class="image-preview" style="display:none" alt="Custom Preview">
+      </div>
+
+      <div class="form-group">
+        <label for="charm-name">Charm Name</label>
+        <input type="text" id="charm-name" placeholder="My Lucky Charm" class="text-input" value="My Charm">
+      </div>
+
+      <div class="form-group">
+        <label for="charm-sound">Acoustic Material</label>
+        <select id="charm-sound" class="select-input">
+          <option value="wood">Wood (Warm knock)</option>
+          <option value="glass" selected>Glass (Crisp clink)</option>
+          <option value="metal">Metal (Bright chime)</option>
+          <option value="bell">Bell (Resonant ring)</option>
+          <option value="soft">Soft (Gentle rustle)</option>
+        </select>
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-header">
+          <span>Mass / Weight</span>
+          <span id="mass-val" class="badge">3.0</span>
+        </div>
+        <input type="range" id="charm-mass" min="10" max="50" value="30" class="range-slider">
+      </div>
+
+      <div class="slider-row">
+        <div class="slider-header">
+          <span>Scale</span>
+          <span id="scale-val" class="badge">0.15</span>
+        </div>
+        <input type="range" id="charm-scale" min="10" max="22" value="15" class="range-slider">
+      </div>
+
+      <button id="btn-save" class="primary-btn" disabled>Save & Hang Charm</button>
+    </div>
+
+    <!-- Right: Interactive Live Simulation Stage -->
+    <div class="preview-stage">
+      <div class="stage-header">Live Simulation Preview</div>
+      <canvas id="studio-canvas" width="320" height="380"></canvas>
+      <div class="stage-hint">Grab and swing with your mouse to test momentum</div>
+    </div>
+  </div>
+
+  <script src="studio.js"></script>
+</body>
+</html>
