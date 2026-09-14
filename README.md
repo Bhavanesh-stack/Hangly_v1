@@ -2,7 +2,7 @@
 
 <img src="Assets/Icons/hangly-icon-256.png" width="128" alt="Hangly Logo">
 
-# Hangly
+# Hangly for Windows
 
 **A tiny piece of motion for your desktop. Swings on a simulated rope.**
 
@@ -10,7 +10,7 @@ A physical charm hangs from your screen edge on a simulated rope. Nudge it and i
 
 <br>
 
-[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%2F%2011%20%7C%20macOS-blue?style=for-the-badge&logo=windows&logoColor=white)](#requirements)
+[![Platform](https://img.shields.io/badge/Platform-Windows%2010%20%2F%2011%20(64--bit)-blue?style=for-the-badge&logo=windows&logoColor=white)](#requirements)
 [![Electron](https://img.shields.io/badge/Electron-34.x-47848F?style=for-the-badge&logo=electron&logoColor=white)](https://electronjs.org)
 [![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
@@ -23,13 +23,13 @@ A physical charm hangs from your screen edge on a simulated rope. Nudge it and i
 
 ---
 
-## 🌟 What is Hangly?
+## 🌟 Features
 
-Hangly puts a tactile, beautiful object at the top of your screen that obeys real gravity and momentum:
+Hangly puts a tactile, beautiful companion at the top of your desktop screen that obeys real gravity and momentum:
 
 - **240 Hz Verlet Physics Engine**: 20-segment rope solver with Gauss-Seidel distance-constraint relaxation, inequality stretch clamping (`maxStretchRatio = 1.02`), and rest-sleep detection.
 - **17 Unique Charms**:
-  - **12 Collection Charms**: Hand-crafted vector SVG charms with threaded beads (`Sunflower`, `Daruma`, `Nazar boncuğu`, `Maneki-neko`, `Hamsa`, `Nimbu-mirchi`, `Ghanta`, `Drishti bommai`, `Pánchángjié`, `Horseshoe`, `Scarab`, `Himmeli`).
+  - **12 Collection Charms**: High-resolution vector SVG charms with threaded beads (`Sunflower`, `Daruma`, `Nazar boncuğu`, `Maneki-neko`, `Hamsa`, `Nimbu-mirchi`, `Ghanta`, `Drishti bommai`, `Pánchángjié`, `Horseshoe`, `Scarab`, `Himmeli`).
   - **5 Classic Geometric Charms**: Custom rendered geometric shapes with specular bloom, radial lighting, and edge rims (`Bead`, `Camera`, `Star`, `Heart`, `Diamond`).
 - **Interactive Mouse Physics**: Click, pull, toss, and flick. Momentum is calculated from release velocity and fed into the Verlet historical step.
 - **Click-Through Transparent Overlay**: Empty screen space ignores clicks and passes them directly to your underlying apps and desktop. Hovering over the charm automatically engages grab interactions.
@@ -39,32 +39,7 @@ Hangly puts a tactile, beautiful object at the top of your screen that obeys rea
 
 ---
 
-## 🚀 Setup & Installation Guide (Windows)
-
-### Prerequisites
-
-- **Windows 10 / 11** (64-bit)
-- **Node.js 18.0.0 or higher** & **npm** (Download from [nodejs.org](https://nodejs.org/))
-- **Git** (Download from [git-scm.com](https://git-scm.com/))
-
----
-
-### Step 1: Clone the Repository
-
-```powershell
-git clone https://github.com/Bhavanesh-stack/Hangly_v1.git
-cd Hangly_v1
-```
-
----
-
-### Step 2: Install Dependencies
-
-```powershell
-npm install
-```
-
----
+## 🚀 Quick Start (Running Hangly)
 
 ### Option 1: Direct Double-Click (No Node.js or Terminal Required)
 
@@ -82,10 +57,13 @@ Hangly builds as a 100% native standalone Windows binary. You can run it directl
 
 ### Option 2: Running from Source (Developer Mode)
 
-If you are modifying code and want hot-reloading:
+If you have Node.js installed and want to run or modify code:
 
 ```powershell
+# 1. Install dependencies
 npm install
+
+# 2. Launch in development mode
 npm start
 ```
 
@@ -93,9 +71,9 @@ npm start
 
 ---
 
-### Option 3: Building the Executables
+### Option 3: Building Executables from Source
 
-To build fresh executables from source:
+To build fresh standalone Windows executables from source:
 
 - **Build Single Portable `.exe` (`Hangly-Portable.exe`)**:
   ```powershell
@@ -105,6 +83,8 @@ To build fresh executables from source:
   ```powershell
   npm run build:dir
   ```
+
+---
 
 ## 🎮 How to Use
 
@@ -170,7 +150,7 @@ Hangly/
 │       ├── audio/          # Procedural Web Audio sound synthesizer (wood, glass, bell, etc.)
 │       ├── charms/         # Charm catalog, custom store, classic geometric renderers, & SVG splitter
 │       └── physics/        # Pure JS 240 Hz Verlet rope engine, spline interpolation, & beads
-├── dist/                   # Packaged Windows standalone executable (Hangly.exe)
+├── dist/                   # Packaged Windows standalone executables (Hangly-Portable.exe & Hangly.exe)
 ├── scripts/                # Automated verification and build utilities
 ├── Launch-Hangly.cmd       # Convenient one-click Windows launcher
 └── package.json            # NPM project dependencies and build scripts
@@ -178,17 +158,8 @@ Hangly/
 
 ---
 
-## 🍎 macOS Native Build
-
-For macOS users, the repository also includes the original Swift 6.0 / SwiftUI codebase:
-1. Open `Hangly.xcodeproj` in **Xcode 16+**.
-2. Select target `Hangly` and build (`Cmd+B`) or run (`Cmd+R`).
-3. Requirements: macOS 14.0 (Sonoma) or later (Apple Silicon).
-
----
-
 ## 📄 License
 
 This project is licensed under the [MIT License](LICENSE).
-Original macOS concept & artwork by **sharancreatedthis**.
-Windows port, Verlet physics engine, and architecture by **Bhavanesh-stack**.
+Original concept & artwork by **sharancreatedthis**.
+Windows port, 240 Hz Verlet physics engine, and architecture by **Bhavanesh-stack**.
