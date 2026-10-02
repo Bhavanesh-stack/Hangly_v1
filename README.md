@@ -70,75 +70,76 @@ Hangly puts a tactile, beautiful companion at the top of your desktop screen tha
 
 ---
 
-### ⚡ Method 1: Portable Standalone Executable (Fastest — No Install Needed)
+### ⚡ Method 1: Portable Standalone Executable (Fastest — No Node.js Needed)
 
-Hangly distributes as a completely standalone, self-contained single `.exe` file. No installation wizard, no Node.js runtime, and no terminal windows are needed.
+Hangly distributes as a completely standalone, self-contained single `.exe` file with zero dependencies.
 
-1. **Download**:
-   - Download the latest **[`dist/Hangly-Portable.exe`](dist/Hangly-Portable.exe)** directly from this repository or from the [Releases](https://github.com/Bhavanesh-stack/Hangly_v1/releases) page.
-2. **Place It Anywhere**:
-   - Move `Hangly-Portable.exe` to your preferred folder (e.g., `Desktop`, `Documents`, or `C:\Tools\Hangly`).
-3. **Run Hangly**:
-   - Double-click **`Hangly-Portable.exe`**.
-   - The charm will immediately appear swinging at the top edge of your screen, and the Hangly icon will appear in your Windows system tray.
+1. **Download or Locate Executable**:
+   - The executable is located at **[`dist/Hangly-Portable.exe`](dist/Hangly-Portable.exe)** or downloadable from the [Releases](https://github.com/Bhavanesh-stack/Hangly_v1/releases) page.
+2. **One-Click Desktop Setup**:
+   - Double-click **`Install-Hangly.cmd`** in the repository root to automatically create a **Desktop shortcut** with icon and set up user directories.
+3. **Or Launch Directly**:
+   - Double-click **`dist/Hangly-Portable.exe`** directly from anywhere on your drive.
+   - The companion charm will immediately swing from the top edge of your screen, and the Hangly icon will appear in your Windows taskbar system tray.
 
 > [!NOTE]
 > **Windows SmartScreen Notice**:
-> Because Hangly is an independent open-source project without a costly commercial Extended Validation (EV) certificate, Windows Defender SmartScreen may display:
+> Because Hangly is an independent open-source project without a commercial Extended Validation (EV) certificate, Windows Defender SmartScreen may display:
 > *"Windows protected your PC — Microsoft Defender SmartScreen prevented an unrecognized app from starting."*
 > 
 > Simply click **More info** → **Run anyway**. Hangly contains zero telemetry, zero trackers, and is 100% open-source with verifiable code in this repository.
 
 ---
 
-### 🛠️ Method 2: Running from Source (Developer Mode)
+### 🖥️ Method 2: Automated Desktop & System Installation Command
 
-If you have Node.js installed and wish to run, customize, or inspect the code directly:
+If you have cloned the repository, you can set up Windows shortcuts and initialize application directories with a single command:
 
-1. **Prerequisites**:
-   - Install [Node.js](https://nodejs.org) (v18.x, v20.x, or newer).
-   - Install [Git](https://git-scm.com).
+```powershell
+# Installs application shortcuts to Desktop and Start Menu, and initializes %APPDATA%\Hangly
+npm run install:app
+```
 
-2. **Clone the Repository**:
-   ```powershell
-   git clone https://github.com/Bhavanesh-stack/Hangly_v1.git
-   cd Hangly_v1
-   ```
-
-3. **Install Dependencies**:
-   ```powershell
-   npm install
-   ```
-
-4. **Launch Application**:
-   ```powershell
-   npm start
-   ```
-   *(Or double-click `Launch-Hangly.cmd` directly in the project folder).*
+*Or double-click `Install-Hangly.cmd` in Windows Explorer.*
 
 ---
 
-### 🔨 Method 3: Building Executables from Source
+### 🛠️ Method 3: Running from Source (Developer Mode)
+
+If you have Node.js installed and wish to run, customize, or inspect the code directly:
+
+```powershell
+# 1. Clone the repository
+git clone https://github.com/Bhavanesh-stack/Hangly_v1.git
+
+# 2. Navigate into project directory
+cd Hangly_v1
+
+# 3. Install NPM dependencies (Electron, Packager, Builder)
+npm install
+
+# 4. Launch Hangly in development mode with live transparent overlay
+npm start
+```
+
+*(Or double-click `Launch-Hangly.cmd` directly in the project folder).*
+
+---
+
+### 🔨 Method 4: Building Standalone Executables from Source
 
 To compile and package fresh standalone Windows executables locally:
 
-- **Build Single-File Portable `.exe` (`Hangly-Portable.exe`)**:
-  ```powershell
-  npm run build:portable
-  ```
-  *(Outputs to `dist/Hangly-Portable.exe`)*
+```powershell
+# 1. Build single-file standalone portable .exe (Outputs to dist/Hangly-Portable.exe)
+npm run build:portable
 
-- **Build Standard NSIS Installer (`Hangly-Setup.exe`)**:
-  ```powershell
-  npm run build:installer
-  ```
-  *(Generates a standard Windows setup wizard in `dist/`)*
+# 2. Build standard Windows NSIS setup wizard installer (Outputs to dist/Hangly-Setup.exe)
+npm run build:installer
 
-- **Build Unpacked Application Directory**:
-  ```powershell
-  npm run build:dir
-  ```
-  *(Generates `dist/Hangly-win32-x64/Hangly.exe`)*
+# 3. Build unpacked application folder distribution (Outputs to dist/Hangly-win32-x64/Hangly.exe)
+npm run build:dir
+```
 
 ---
 
