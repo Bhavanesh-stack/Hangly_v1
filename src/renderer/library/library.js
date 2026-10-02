@@ -83,8 +83,20 @@ function getSvgDataUrl(svgPath) {
     }
     return `data:image/svg+xml;base64,${Buffer.from(svgText).toString('base64')}`;
   } catch (e) {
-    return `file://${svgPath.replace(/\\/g, '/')}`;
+    return `file:///${svgPath.replace(/\\/g, '/')}`;
   }
+}
+
+function getLocalImageDataUrl(imagePath) {
+  try {
+    if (imagePath && fs.existsSync(imagePath)) {
+      const ext = path.extname(imagePath).toLowerCase().replace('.', '') || 'png';
+      const mime = ext === 'svg' ? 'image/svg+xml' : (ext === 'webp' ? 'image/webp' : (ext === 'jpg' || ext === 'jpeg' ? 'image/jpeg' : 'image/png'));
+      const b64 = fs.readFileSync(imagePath).toString('base64');
+      return `data:${mime};base64,${b64}`;
+    }
+  } catch (e) {}
+  return imagePath ? `file:///${imagePath.replace(/\\/g, '/')}` : '';
 }
 
     const iconWrap = document.createElement('div');
@@ -98,7 +110,7 @@ function getSvgDataUrl(svgPath) {
       iconWrap.appendChild(img);
     } else if (charm.type === 'custom') {
       const img = document.createElement('img');
-      img.src = `file://${charm.imagePath.replace(/\\/g, '/')}`;
+      img.src = getLocalImageDataUrl(charm.imagePath);
       iconWrap.appendChild(img);
     } else {
       // Draw geometric mini canvas
@@ -199,7 +211,7 @@ function updatePreviewImg() {
     const svgPath = getCharmSvgPath(filename);
     previewImg.src = getSvgDataUrl(svgPath);
   } else if (selectedCharm.type === 'custom') {
-    previewImg.src = `file://${selectedCharm.imagePath.replace(/\\/g, '/')}`;
+    previewImg.src = getLocalImageDataUrl(selectedCharm.imagePath);
   }
 }
 

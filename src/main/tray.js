@@ -46,6 +46,23 @@ class HanglyTray {
       }
     }));
 
+    if (this.ctx.customCharmStore) {
+      const customs = this.ctx.customCharmStore.loadCharms();
+      if (customs && customs.length > 0) {
+        charmSubmenu.push({ type: 'separator' });
+        customs.forEach(c => {
+          charmSubmenu.push({
+            label: `${c.name} (Custom)`,
+            type: 'radio',
+            checked: c.id === currentCharmId,
+            click: () => {
+              this.ctx.setCharm(c.id);
+            }
+          });
+        });
+      }
+    }
+
     const contextMenu = Menu.buildFromTemplate([
       {
         label: 'Show Overlay',

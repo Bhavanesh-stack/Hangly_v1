@@ -55,7 +55,18 @@ function getCustomImage(charm) {
   if (!charm || !charm.imagePath) return null;
   if (!customImageCache[charm.id]) {
     const img = new Image();
-    img.src = `file://${charm.imagePath.replace(/\\/g, '/')}`;
+    try {
+      if (fs.existsSync(charm.imagePath)) {
+        const ext = path.extname(charm.imagePath).toLowerCase().replace('.', '') || 'png';
+        const mime = ext === 'svg' ? 'image/svg+xml' : (ext === 'webp' ? 'image/webp' : (ext === 'jpg' || ext === 'jpeg' ? 'image/jpeg' : 'image/png'));
+        const b64 = fs.readFileSync(charm.imagePath).toString('base64');
+        img.src = `data:${mime};base64,${b64}`;
+      } else {
+        img.src = `file:///${charm.imagePath.replace(/\\/g, '/')}`;
+      }
+    } catch (e) {
+      img.src = `file:///${charm.imagePath.replace(/\\/g, '/')}`;
+    }
     customImageCache[charm.id] = img;
   }
   return customImageCache[charm.id];
@@ -652,7 +663,10 @@ ipcRenderer.on('update-settings', (event, newSettings) => {
   }
 });
 
-ipcRenderer.on('switch-charm', (event, charmId) => {
-  const charm = resolveCharm(charmId);
+ipcRenderer.on('switch-charm', (event, charmId, customCharmData) => {
+  let charm = resolveCharm(charmId);
+  if ((!charm || charm.id !== charmId) && customCharmData) {
+    charm = customCharmData;
+  }
   applyCharm(charm, false);
 });

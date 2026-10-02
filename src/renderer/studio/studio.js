@@ -117,22 +117,32 @@ btnSave.addEventListener('click', async () => {
   btnSave.disabled = true;
   btnSave.textContent = 'Saving…';
 
-  const charmData = {
-    name: charmName.value.trim() || 'Custom Charm',
-    sound: charmSound.value,
-    mass: parseFloat((charmMass.value / 10).toFixed(1)),
-    radiusRatio: parseFloat((charmScale.value / 100).toFixed(2)),
-    knotInset: 0.85
-  };
+  try {
+    const charmData = {
+      name: charmName.value.trim() || 'Custom Charm',
+      sound: charmSound.value,
+      mass: parseFloat((charmMass.value / 10).toFixed(1)),
+      radiusRatio: parseFloat((charmScale.value / 100).toFixed(2)),
+      knotInset: 0.85
+    };
 
-  const saved = await ipcRenderer.invoke('save-custom-charm', charmData, rawFileBuffer, rawExt);
-  await ipcRenderer.invoke('select-charm', saved.id);
-
-  btnSave.textContent = 'Charm Hung on Desktop!';
-  setTimeout(() => {
-    btnSave.textContent = 'Save & Hang Charm';
-    btnSave.disabled = false;
-  }, 2000);
+    const saved = await ipcRenderer.invoke('save-custom-charm', charmData, rawFileBuffer, rawExt);
+    if (saved && saved.id) {
+      await ipcRenderer.invoke('select-charm', saved.id);
+      soundPlayer.play(charmData.sound, 0.9);
+      btnSave.textContent = 'Charm Hung on Desktop!';
+    } else {
+      throw new Error('Save did not return charm entry');
+    }
+  } catch (err) {
+    console.error('Failed to save and hang charm:', err);
+    btnSave.textContent = 'Save Failed';
+  } finally {
+    setTimeout(() => {
+      btnSave.textContent = 'Save & Hang Charm';
+      btnSave.disabled = false;
+    }, 2200);
+  }
 });
 
 // Interactive Rope Simulation Loop

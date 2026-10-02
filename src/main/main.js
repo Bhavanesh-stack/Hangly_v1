@@ -151,7 +151,9 @@ function toggleOverlay() {
 function setCharm(charmId) {
   settingsStore.save({ overlay: { charmId } });
   if (overlayWindow && !overlayWindow.isDestroyed()) {
-    overlayWindow.webContents.send('switch-charm', charmId);
+    const customs = customCharmStore.loadCharms();
+    const customCharm = customs.find(c => c.id === charmId);
+    overlayWindow.webContents.send('switch-charm', charmId, customCharm);
     overlayWindow.webContents.send('update-settings', settingsStore.settings);
   }
   if (tray) tray.updateMenu();
@@ -277,6 +279,14 @@ ipcMain.handle('reset-settings', () => {
 });
 
 ipcMain.handle('select-charm', (event, charmId) => {
+  if (!settingsStore.settings.overlay.isEnabled) {
+    settingsStore.save({ overlay: { isEnabled: true } });
+  }
+  if (!overlayWindow || overlayWindow.isDestroyed()) {
+    createOverlayWindow();
+  } else {
+    overlayWindow.show();
+  }
   setCharm(charmId);
   return settingsStore.settings;
 });
@@ -299,6 +309,7 @@ ipcMain.handle('delete-custom-charm', (event, id) => {
 app.whenReady().then(() => {
   tray = new HanglyTray({
     settingsStore,
+    customCharmStore,
     toggleOverlay,
     setCharm,
     openSettingsWindow,

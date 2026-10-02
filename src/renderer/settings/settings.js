@@ -61,6 +61,24 @@ function initCharmSelect() {
   charmSelect.appendChild(groupSvg);
   charmSelect.appendChild(groupClassic);
 
+  // Load custom charms
+  ipcRenderer.invoke('get-custom-charms').then(customs => {
+    if (customs && customs.length > 0) {
+      const groupCustom = document.createElement('optgroup');
+      groupCustom.label = 'Custom Charms';
+      customs.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = c.name + ' (Custom)';
+        groupCustom.appendChild(opt);
+      });
+      charmSelect.appendChild(groupCustom);
+      if (settings && settings.overlay && settings.overlay.charmId) {
+        charmSelect.value = settings.overlay.charmId;
+      }
+    }
+  }).catch(() => {});
+
   charmSelect.addEventListener('change', () => {
     const charmId = charmSelect.value;
     ipcRenderer.invoke('select-charm', charmId).then(populate);

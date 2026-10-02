@@ -116,6 +116,15 @@
       "previewImage": "charm-preview-sunflower"
     },
     {
+      "id": "wave",
+      "name": "Ocean Wave",
+      "region": "Japan and Pacific Rim",
+      "category": "ritual",
+      "description": "Inspired by the timeless Great Wave off Kanagawa. A talisman of cleansing, renewal, fluid resilience, and the majestic power of the rolling tides.",
+      "tags": ["wave", "ocean", "water", "sea", "Hokusai", "Kanagawa", "blue", "talisman"],
+      "previewImage": "charm-preview-wave"
+    },
+    {
       "id": "circle",
       "name": "Bead",
       "region": "Universal",

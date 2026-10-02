@@ -62,6 +62,19 @@ const SoundSynthesizer = {
       attack: 0.002,
       noise: { duration: 0.09, decay: 0.006, smoothing: 0.08, gain: 0.15 },
       peak: 0.50
+    },
+    wave: {
+      fundamental: 85,
+      partials: [
+        { ratio: 1.00, amplitude: 0.90, decay: 0.90 },
+        { ratio: 1.45, amplitude: 0.60, decay: 0.75 },
+        { ratio: 2.10, amplitude: 0.40, decay: 0.60 },
+        { ratio: 3.20, amplitude: 0.25, decay: 0.45 }
+      ],
+      duration: 1.4,
+      attack: 0.16,
+      noise: { duration: 1.5, decay: 0.55, smoothing: 0.08, gain: 0.65, attack: 0.18 },
+      peak: 0.85
     }
   },
 
@@ -94,6 +107,7 @@ const SoundSynthesizer = {
       const noise = voice.noise;
       const noiseSamples = Math.floor(noise.duration * this.sampleRate);
       const decayCoeff = 1.0 / (noise.decay * this.sampleRate);
+      const noiseAttackSamples = Math.floor((noise.attack || voice.attack || 0.001) * this.sampleRate);
       let filterState = 0;
 
       // Deterministic PRNG seed
@@ -107,7 +121,8 @@ const SoundSynthesizer = {
         const rawNoise = random();
         filterState = filterState + (rawNoise - filterState) * noise.smoothing;
         const envelope = Math.exp(-i * decayCoeff);
-        samples[i] += filterState * envelope * noise.gain;
+        const attackScale = noiseAttackSamples > 0 ? Math.min(1.0, i / noiseAttackSamples) : 1.0;
+        samples[i] += filterState * envelope * noise.gain * attackScale;
       }
     }
 

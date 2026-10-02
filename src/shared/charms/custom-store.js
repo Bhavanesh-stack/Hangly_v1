@@ -6,9 +6,39 @@ const path = require('path');
 
 class CustomCharmStore {
   constructor(appDataPath) {
-    this.baseDir = appDataPath ? path.join(appDataPath, 'Hangly', 'Charms') : path.join(__dirname, '..', '..', '..', 'user_charms');
+    this.baseDir = this.resolveBaseDir(appDataPath);
     this.metadataFile = path.join(this.baseDir, 'charms.json');
     this.ensureDirectory();
+  }
+
+  resolveBaseDir(appDataPath) {
+    if (appDataPath) {
+      return path.join(appDataPath, 'Hangly', 'Charms');
+    }
+
+    try {
+      const electron = require('electron');
+      const app = electron.app || (electron.remote && electron.remote.app);
+      if (app && app.getPath) {
+        return path.join(app.getPath('userData'), 'Hangly', 'Charms');
+      }
+    } catch (e) {}
+
+    // Check Windows APPDATA paths
+    if (process.platform === 'win32' && process.env.APPDATA) {
+      const candidates = [
+        path.join(process.env.APPDATA, 'Hangly', 'Hangly', 'Charms'),
+        path.join(process.env.APPDATA, 'hangly', 'Hangly', 'Charms'),
+        path.join(process.env.APPDATA, 'Hangly', 'Charms'),
+        path.join(process.env.APPDATA, 'hangly', 'Charms')
+      ];
+      for (const cand of candidates) {
+        if (fs.existsSync(cand)) return cand;
+      }
+      return candidates[0];
+    }
+
+    return path.join(__dirname, '..', '..', '..', 'user_charms');
   }
 
   ensureDirectory() {
@@ -28,7 +58,21 @@ class CustomCharmStore {
     try {
       if (fs.existsSync(this.metadataFile)) {
         const raw = fs.readFileSync(this.metadataFile, 'utf8');
-        return JSON.parse(raw);
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+      // Check alternative AppData locations
+      if (process.platform === 'win32' && process.env.APPDATA) {
+        const altFiles = [
+          path.join(process.env.APPDATA, 'Hangly', 'Hangly', 'Charms', 'charms.json'),
+          path.join(process.env.APPDATA, 'hangly', 'Hangly', 'Charms', 'charms.json')
+        ];
+        for (const f of altFiles) {
+          if (fs.existsSync(f)) {
+            const parsed = JSON.parse(fs.readFileSync(f, 'utf8'));
+            if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          }
+        }
       }
     } catch (e) {
       console.error('Failed to load custom charms:', e);
