@@ -1,298 +1,310 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Layer_OceanWave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 94 165" width="94" height="165">
   <defs>
-    <!-- Silk Cord & Bead Gradients -->
-    <linearGradient id="silkCord" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#0a192f"/>
-      <stop offset="50%" stop-color="#2a4365"/>
-      <stop offset="100%" stop-color="#071326"/>
+    <!-- Hanging Cord & Bead Gradients -->
+    <linearGradient id="cordGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#023e8a"/>
+      <stop offset="50%" stop-color="#0096c7"/>
+      <stop offset="100%" stop-color="#03045e"/>
     </linearGradient>
 
-    <radialGradient id="goldBead" cx="35%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="35%" stop-color="#eab308"/>
-      <stop offset="75%" stop-color="#a16207"/>
-      <stop offset="100%" stop-color="#422006"/>
-    </radialGradient>
-
-    <radialGradient id="indigoBead" cx="35%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#60a5fa"/>
-      <stop offset="35%" stop-color="#1d4ed8"/>
-      <stop offset="75%" stop-color="#172554"/>
-      <stop offset="100%" stop-color="#030712"/>
-    </radialGradient>
-
-    <!-- Authentic Hokusai Prussian Blue Gradients -->
-    <linearGradient id="prussianDeep" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#0a1931"/>
-      <stop offset="45%" stop-color="#102a54"/>
-      <stop offset="85%" stop-color="#18417c"/>
-      <stop offset="100%" stop-color="#0b1b36"/>
-    </linearGradient>
-
-    <linearGradient id="prussianMid" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#143668"/>
-      <stop offset="40%" stop-color="#1d5096"/>
-      <stop offset="80%" stop-color="#2563eb"/>
-      <stop offset="100%" stop-color="#38bdf8"/>
-    </linearGradient>
-
-    <linearGradient id="waveHollow" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#061224"/>
-      <stop offset="60%" stop-color="#0c2346"/>
-      <stop offset="100%" stop-color="#16386b"/>
-    </linearGradient>
-
-    <linearGradient id="foamShade" x1="0%" y1="0%" x2="0%" y2="100%">
+    <radialGradient id="pearlBead" cx="35%" cy="30%" r="70%">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="50%" stop-color="#f0f9ff"/>
-      <stop offset="85%" stop-color="#e0f2fe"/>
-      <stop offset="100%" stop-color="#bae6fd"/>
+      <stop offset="35%" stop-color="#e0f2fe"/>
+      <stop offset="75%" stop-color="#93c5fd"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </radialGradient>
+
+    <radialGradient id="aquaBead" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#e0fbfc"/>
+      <stop offset="35%" stop-color="#38bdf8"/>
+      <stop offset="75%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#034078"/>
+    </radialGradient>
+
+    <!-- Wave Body Gradients (Apple 🌊 iOS Aesthetic) -->
+    <linearGradient id="waveDeepBlue" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0353a4"/>
+      <stop offset="45%" stop-color="#023e8a"/>
+      <stop offset="85%" stop-color="#002855"/>
+      <stop offset="100%" stop-color="#001845"/>
     </linearGradient>
 
-    <!-- Subtle Drop Shadow for the entire Wave Talisman -->
-    <filter id="waveShadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="2.2" stdDeviation="2.0" flood-color="#020617" flood-opacity="0.38"/>
+    <linearGradient id="waveHollowDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#001845"/>
+      <stop offset="60%" stop-color="#002855"/>
+      <stop offset="100%" stop-color="#0353a4"/>
+    </linearGradient>
+
+    <linearGradient id="waveMidTone" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0096c7"/>
+      <stop offset="50%" stop-color="#0077b6"/>
+      <stop offset="100%" stop-color="#023e8a"/>
+    </linearGradient>
+
+    <linearGradient id="waveBackWall" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#48cae4"/>
+      <stop offset="40%" stop-color="#0096c7"/>
+      <stop offset="80%" stop-color="#0077b6"/>
+      <stop offset="100%" stop-color="#023e8a"/>
+    </linearGradient>
+
+    <!-- Foam Shading Gradients (Puffy 3D Cloud Foam) -->
+    <linearGradient id="foamTopGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="45%" stop-color="#f0f9ff"/>
+      <stop offset="80%" stop-color="#dbeafe"/>
+      <stop offset="100%" stop-color="#93c5fd"/>
+    </linearGradient>
+
+    <linearGradient id="foamUnderGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#e0f2fe"/>
+      <stop offset="60%" stop-color="#bfdbfe"/>
+      <stop offset="100%" stop-color="#60a5fa"/>
+    </linearGradient>
+
+    <!-- Drop Shadow for the 3D Emoji Cutout -->
+    <filter id="emojiShadow" x="-12%" y="-12%" width="124%" height="124%">
+      <feDropShadow dx="0" dy="2.5" stdDeviation="2.2" flood-color="#001233" flood-opacity="0.35"/>
     </filter>
   </defs>
 
-  <!-- ================= TOP SUSPENSION CORD & KUMIHIMO BEADS ================= -->
+  <!-- ================= TOP SUSPENSION CORD & THREADED BEADS ================= -->
   <!-- Hanging Cord (y: 0 to 48) -->
-  <line x1="47" y1="0" x2="47" y2="48" stroke="url(#silkCord)" stroke-width="3.4" stroke-linecap="round"/>
+  <line x1="47" y1="0" x2="47" y2="48" stroke="url(#cordGrad)" stroke-width="3.2" stroke-linecap="round"/>
 
-  <!-- Bead 1: Polished Brass / Gold Ring Bead (y: 11 - 18) -->
-  <circle cx="47" cy="14.5" r="5.6" fill="url(#goldBead)"/>
-  <ellipse cx="45.5" cy="12.8" rx="2.0" ry="1.2" fill="#ffffff" opacity="0.85"/>
+  <!-- Bead 1: Shimmering Ocean Pearl Bead (y: 11 - 18) -->
+  <circle cx="47" cy="14.5" r="5.6" fill="url(#pearlBead)"/>
+  <ellipse cx="45.4" cy="12.8" rx="2.0" ry="1.2" fill="#ffffff" opacity="0.9"/>
+  <!-- Silver spacer caps -->
+  <ellipse cx="47" cy="9.2" rx="3.0" ry="1.0" fill="#93c5fd"/>
+  <ellipse cx="47" cy="19.8" rx="3.0" ry="1.0" fill="#60a5fa"/>
 
-  <!-- Bead 2: Indigo Ceramic Ocean Bead (y: 23 - 36) -->
-  <circle cx="47" cy="29.5" r="6.8" fill="url(#indigoBead)"/>
-  <ellipse cx="44.8" cy="27.0" rx="2.6" ry="1.5" fill="#ffffff" opacity="0.8"/>
-  <!-- Gold wave line on the ceramic bead -->
-  <path d="M 42 30 Q 47 28 52 30" fill="none" stroke="#fef08a" stroke-width="0.8" opacity="0.8"/>
+  <!-- Bead 2: Aquamarine Glass Bead (y: 23 - 36) -->
+  <circle cx="47" cy="29.5" r="6.8" fill="url(#aquaBead)"/>
+  <ellipse cx="44.8" cy="26.8" rx="2.5" ry="1.4" fill="#ffffff" opacity="0.85"/>
+  <circle cx="49.2" cy="31.2" r="1.1" fill="#e0fbfc" opacity="0.8"/>
+  <ellipse cx="47" cy="36.5" rx="3.8" ry="1.2" fill="#0284c7"/>
 
   <!-- Attachment Loop / Knot Ring (y: 40 - 48) -->
-  <circle cx="47" cy="44.5" r="4.2" fill="none" stroke="url(#goldBead)" stroke-width="2.2"/>
-  <circle cx="47" cy="44.5" r="2.0" fill="#081528"/>
+  <circle cx="47" cy="44.5" r="4.2" fill="none" stroke="url(#pearlBead)" stroke-width="2.2"/>
+  <circle cx="47" cy="44.5" r="2.0" fill="#001845"/>
 
-  <!-- ================= THE GREAT WAVE (HOKUSAI UKIYO-E MASTERPIECE) ================= -->
-  <!-- Charm Body (y: 46 to 160) with Filter Shadow -->
-  <g filter="url(#waveShadow)">
+  <!-- ================= THE WAVE (AUTHENTIC APPLE 🌊 EMOJI CUTOUT) ================= -->
+  <g filter="url(#emojiShadow)">
 
-    <!-- 1. BASE DARK WATER MASS (The powerful deep Prussian blue foundation) -->
+    <!-- 1. BASE DARK BLUE BACK WATER BODY -->
     <path d="M 47 48
-             C 56 48, 68 53, 76 64
-             C 84 76, 88 92, 88 112
-             C 88 135, 78 149, 64 156
-             C 50 162, 34 161, 20 156
-             C 10 152, 5 142, 5 132
-             C 5 120, 11 110, 19 104
-             C 27 98, 36 96, 43 90
-             C 49 84, 52 75, 49 68
-             C 47 63, 44 61, 40 64
-             C 36 67, 33 73, 29 79
-             C 25 86, 21 91, 15 91
-             C 11 91, 8 86, 11 81
-             C 15 74, 23 66, 31 59
-             C 38 52, 44 48, 47 48 Z"
-          fill="url(#prussianDeep)"/>
+             C 41 48, 33 53, 27 60
+             C 21 68, 17 78, 15 90
+             C 13 104, 13 120, 13 136
+             C 13 147, 16 153, 25 153
+             C 40 153, 58 153, 81 153
+             C 83 153, 85 148, 85 140
+             C 85 125, 78 116, 68 112
+             C 57 108, 48 98, 46 88
+             C 45 80, 48 72, 53 66
+             C 57 61, 62 60, 60 54
+             C 58 50, 52 48, 47 48 Z"
+          fill="url(#waveDeepBlue)"/>
 
-    <!-- 2. INNER CAVITY / HOLLOW OF THE GREAT WAVE (Dark midnight depth under the crest) -->
-    <path d="M 76 78
-             C 74 94, 66 112, 53 124
-             C 42 133, 29 135, 18 131
-             C 14 129, 13 123, 16 119
-             C 21 114, 29 110, 36 104
-             C 44 98, 49 88, 48 78
-             C 47 70, 42 66, 38 68
-             C 45 61, 55 58, 63 62
-             C 71 67, 76 72, 76 78 Z"
-          fill="url(#waveHollow)"/>
+    <!-- 2. MAIN CURVING BACK WALL (Smooth Cyan-to-Cobalt Gradient Sweep) -->
+    <path d="M 46 51
+             C 38 52, 29 58, 23 67
+             C 17 77, 14 91, 14 108
+             C 14 122, 16 136, 21 146
+             C 24 151, 30 152, 38 152
+             C 48 152, 56 148, 62 142
+             C 71 133, 76 122, 80 114
+             C 84 120, 84 129, 84 140
+             C 84 148, 82 152, 80 152
+             L 24 152
+             C 16 152, 14 146, 14 135
+             C 14 116, 17 100, 22 88
+             C 28 74, 37 63, 46 55
+             C 52 50, 57 50, 58 53
+             C 56 57, 50 58, 46 62
+             C 41 67, 43 76, 47 80
+             C 51 84, 58 84, 60 76
+             C 61 71, 58 66, 54 62
+             C 52 60, 50 55, 46 51 Z"
+          fill="url(#waveBackWall)"/>
 
-    <!-- 3. RISING SWELL & MID-TONE SURGE (Sweeping dynamic energy of the main wave) -->
-    <path d="M 52 50
-             C 63 53, 74 61, 81 74
-             C 87 86, 88 102, 86 118
-             C 84 134, 76 148, 63 155
-             C 52 160, 38 159, 25 154
-             C 34 149, 44 142, 54 133
-             C 65 122, 73 107, 75 92
-             C 76 81, 72 71, 64 64
-             C 58 59, 50 58, 44 64
-             C 49 56, 51 51, 52 50 Z"
-          fill="url(#prussianMid)"/>
+    <!-- 3. INNER BARREL / CAVITY (Deep Midnight Blue Hollow under the crest) -->
+    <path d="M 45 68
+             C 40 73, 38 82, 41 89
+             C 44 95, 52 98, 59 93
+             C 65 89, 67 80, 64 74
+             C 62 70, 57 68, 52 71
+             C 48 73, 46 71, 45 68 Z"
+          fill="url(#waveHollowDark)"/>
 
-    <!-- 4. UKIYO-E WATER STRIAE (Authentic traditional Japanese curved water lines) -->
-    <!-- Swell contour lines following the great curling arc -->
-    <path d="M 83 95 C 84 112, 80 128, 70 142 C 61 152, 48 157, 34 158"
-          fill="none" stroke="#38bdf8" stroke-width="1.3" stroke-linecap="round" opacity="0.85"/>
-    <path d="M 80 85 C 82 102, 77 120, 67 134 C 57 145, 45 151, 31 152"
-          fill="none" stroke="#7dd3fc" stroke-width="1.0" stroke-linecap="round" opacity="0.8"/>
-    <path d="M 75 75 C 77 92, 72 110, 62 124 C 52 136, 40 142, 28 144"
-          fill="none" stroke="#bae6fd" stroke-width="0.9" stroke-linecap="round" opacity="0.75"/>
-    <path d="M 68 64 C 71 80, 66 98, 56 112 C 47 124, 35 131, 23 134"
-          fill="none" stroke="#e0f2fe" stroke-width="0.8" stroke-linecap="round" opacity="0.7"/>
+    <!-- 4. DIAGONAL WATER FLUTES / STRIATIONS (Characteristic Apple 🌊 flowing ribbons) -->
+    <!-- Ribbon 1 (Topmost highlight stripe) -->
+    <path d="M 23 92 C 28 85, 36 82, 45 84 C 54 86, 61 95, 68 103 C 74 110, 80 115, 84 116"
+          fill="none" stroke="#bae6fd" stroke-width="1.8" stroke-linecap="round" opacity="0.9"/>
 
-    <!-- Additional fine current lines -->
-    <path d="M 86 110 C 86 126, 80 140, 69 150 C 58 158, 44 161, 30 161"
-          fill="none" stroke="#0284c7" stroke-width="1.1" stroke-linecap="round" opacity="0.6"/>
-    <path d="M 60 55 C 64 68, 60 84, 52 98 C 45 109, 36 116, 26 122"
-          fill="none" stroke="#bae6fd" stroke-width="0.8" stroke-linecap="round" opacity="0.65"/>
-    <path d="M 53 50 C 56 62, 53 74, 46 86 C 41 95, 33 102, 24 108"
-          fill="none" stroke="#7dd3fc" stroke-width="0.7" stroke-linecap="round" opacity="0.6"/>
+    <!-- Ribbon 2 (Cyan mid-stripe) -->
+    <path d="M 20 106 C 24 99, 32 96, 41 99 C 50 102, 58 111, 66 119 C 72 125, 78 128, 84 128"
+          fill="none" stroke="#7dd3fc" stroke-width="2.2" stroke-linecap="round" opacity="0.85"/>
 
-    <!-- 5. LOWER FOREGROUND WAVE (Secondary churning crest on the left & bottom) -->
-    <path d="M 5 134
-             C 5 122, 11 112, 19 107
-             C 27 101, 36 100, 44 95
-             C 49 91, 52 83, 50 77
-             C 48 72, 43 70, 39 74
-             C 34 78, 32 85, 27 92
-             C 22 99, 15 102, 9 104
-             C 6 112, 5 123, 5 134 Z"
-          fill="url(#prussianMid)"/>
+    <!-- Ribbon 3 (Cobalt stripe) -->
+    <path d="M 18 118 C 22 112, 30 109, 39 113 C 48 117, 56 126, 64 133 C 70 138, 77 140, 83 139"
+          fill="none" stroke="#38bdf8" stroke-width="2.4" stroke-linecap="round" opacity="0.8"/>
 
-    <!-- Churning water lines on foreground wave -->
-    <path d="M 8 130 C 10 120, 16 112, 24 108 C 32 104, 40 102, 46 96"
-          fill="none" stroke="#bae6fd" stroke-width="1.0" stroke-linecap="round" opacity="0.85"/>
-    <path d="M 12 138 C 15 128, 22 120, 30 116 C 37 112, 45 109, 50 103"
-          fill="none" stroke="#7dd3fc" stroke-width="0.9" stroke-linecap="round" opacity="0.75"/>
-    <path d="M 18 146 C 22 136, 29 128, 38 123 C 46 118, 54 114, 60 108"
-          fill="none" stroke="#38bdf8" stroke-width="0.8" stroke-linecap="round" opacity="0.65"/>
+    <!-- Ribbon 4 (Deep blue contrast stripe) -->
+    <path d="M 17 129 C 22 124, 30 122, 39 126 C 48 130, 56 138, 64 143 C 70 147, 76 148, 81 146"
+          fill="none" stroke="#0284c7" stroke-width="2.0" stroke-linecap="round" opacity="0.75"/>
 
-    <!-- 6. THE ICONIC WHITE WAVE CREST & HOKUSAI CLAW FINGERS (Main Towering Lip) -->
-    <!-- Foam Head Base -->
-    <path d="M 47 46
-             C 54 46, 64 50, 71 58
-             C 77 66, 81 76, 80 87
-             C 78 86, 75 83, 73 85
-             C 71 87, 72 90, 70 92
-             C 68 94, 65 91, 63 93
-             C 61 95, 62 98, 60 100
-             C 58 102, 55 98, 52 101
-             C 49 104, 51 108, 48 111
-             C 45 114, 42 110, 39 113
-             C 36 116, 38 120, 35 123
-             C 32 126, 28 123, 25 127
-             C 22 130, 24 135, 20 138
-             C 17 141, 12 138, 9 142
-             C 8 138, 10 132, 14 128
-             C 18 124, 24 122, 27 116
-             C 30 110, 28 104, 32 98
-             C 36 92, 42 88, 45 81
-             C 48 74, 46 67, 43 62
-             C 40 57, 36 56, 33 60
-             C 36 53, 41 47, 47 46 Z"
-          fill="url(#foamShade)"/>
+    <!-- Ribbon 5 (Bottom subtle stripe) -->
+    <path d="M 16 140 C 21 136, 29 135, 38 138 C 47 141, 55 147, 63 150 C 69 152, 75 152, 79 151"
+          fill="none" stroke="#0369a1" stroke-width="1.8" stroke-linecap="round" opacity="0.7"/>
 
-    <!-- DISTINCTIVE HOKUSAI "CLAW" FOAM FINGERS (The curling, grasping sea foam tips) -->
-    <!-- Primary Grasping Claw (Curling down toward the center) -->
-    <path d="M 44 60 C 47 64, 46 72, 42 76 C 39 79, 34 81, 31 85 C 28 89, 29 94, 25 97 C 23 98, 20 96, 21 93 C 23 88, 27 84, 31 80 C 35 76, 38 71, 37 66 C 36 62, 40 59, 44 60 Z"
+    <!-- 5. MID-LEVEL WAVE SURGE (Lower front curling wave) -->
+    <path d="M 14 120
+             C 14 105, 18 95, 26 88
+             C 33 82, 42 81, 49 85
+             C 55 88, 59 95, 64 101
+             C 69 107, 75 111, 82 113
+             C 77 120, 71 127, 63 133
+             C 54 139, 44 142, 33 142
+             C 24 142, 17 135, 14 120 Z"
+          fill="url(#waveMidTone)"/>
+
+    <!-- Water current highlights on the mid-level surge -->
+    <path d="M 21 96 C 26 91, 33 89, 41 91 C 49 93, 56 100, 62 107"
+          fill="none" stroke="#e0f2fe" stroke-width="1.2" stroke-linecap="round" opacity="0.8"/>
+    <path d="M 18 108 C 23 103, 31 101, 39 104 C 47 107, 54 114, 60 120"
+          fill="none" stroke="#bae6fd" stroke-width="1.1" stroke-linecap="round" opacity="0.75"/>
+
+    <!-- ================= 6. THE BILLOWY FOAM CRESTS (3D APPLE EMOJI FOAM) ================= -->
+    <!-- SECONDARY WAVE LOWER FOAM (Underside Shadow) -->
+    <path d="M 14 116
+             C 16 112, 19 113, 21 110
+             C 23 107, 24 104, 27 103
+             C 30 102, 32 105, 35 103
+             C 38 101, 39 97, 43 96
+             C 47 95, 50 99, 54 99
+             C 58 99, 61 95, 65 96
+             C 69 97, 71 101, 75 103
+             C 79 105, 82 105, 84 108
+             C 82 114, 76 117, 70 119
+             C 64 121, 57 117, 52 119
+             C 47 121, 44 125, 39 126
+             C 34 127, 30 123, 26 124
+             C 21 125, 17 127, 14 129 Z"
+          fill="url(#foamUnderGrad)"/>
+
+    <!-- SECONDARY WAVE LOWER FOAM (Crisp White & Cyan Puffy Head) -->
+    <path d="M 14 113
+             C 16 109, 19 110, 21 107
+             C 23 104, 24 101, 27 100
+             C 30 99, 32 102, 35 100
+             C 38 98, 39 94, 43 93
+             C 47 92, 50 96, 54 96
+             C 58 96, 61 92, 65 93
+             C 69 94, 71 98, 75 100
+             C 79 102, 82 102, 84 105
+             C 80 109, 74 112, 68 113
+             C 62 114, 56 111, 51 113
+             C 46 115, 43 118, 38 119
+             C 33 120, 29 117, 25 118
+             C 20 119, 16 121, 14 123 Z"
+          fill="url(#foamTopGrad)"/>
+
+    <!-- Foam puff bubbles on secondary wave -->
+    <circle cx="27" cy="104" r="3.2" fill="#ffffff" opacity="0.95"/>
+    <circle cx="36" cy="102" r="3.6" fill="#ffffff" opacity="0.95"/>
+    <circle cx="45" cy="98" r="4.0" fill="#ffffff" opacity="0.95"/>
+    <circle cx="55" cy="99" r="3.8" fill="#ffffff" opacity="0.95"/>
+    <circle cx="65" cy="100" r="3.4" fill="#ffffff" opacity="0.95"/>
+    <circle cx="74" cy="103" r="3.0" fill="#ffffff" opacity="0.95"/>
+
+    <!-- ================= 7. TOP TOWERING CREST FOAM (The Big 🌊 Emoji Curl) ================= -->
+    <!-- Top Crest Underside Shadow (Soft Cyan-Blue Shading) -->
+    <path d="M 44 48
+             C 36 49, 29 55, 23 64
+             C 17 73, 13 85, 12 99
+             C 13 103, 17 101, 19 97
+             C 21 93, 21 87, 24 84
+             C 27 81, 31 82, 34 78
+             C 37 74, 36 68, 40 65
+             C 44 62, 48 64, 52 61
+             C 56 58, 56 53, 60 52
+             C 64 51, 68 55, 72 56
+             C 76 57, 80 54, 82 56
+             C 80 62, 74 65, 70 68
+             C 66 71, 64 76, 59 78
+             C 54 80, 50 78, 47 81
+             C 44 84, 45 88, 42 90
+             C 39 92, 36 89, 33 91
+             C 30 93, 29 97, 26 98
+             C 23 99, 20 97, 18 99
+             C 19 93, 23 83, 28 75
+             C 34 66, 42 59, 50 54
+             C 55 51, 51 48, 44 48 Z"
+          fill="url(#foamUnderGrad)"/>
+
+    <!-- Main High Foam Cap (Crisp Billowy White with Cyan Tint) -->
+    <path d="M 45 46
+             C 37 47, 29 53, 24 61
+             C 18 70, 14 81, 13 94
+             C 15 97, 18 95, 20 92
+             C 22 88, 22 83, 25 80
+             C 28 77, 32 78, 35 74
+             C 38 70, 37 65, 41 62
+             C 45 59, 49 61, 53 58
+             C 57 55, 57 51, 61 50
+             C 65 49, 69 53, 73 54
+             C 76 55, 80 52, 82 54
+             C 78 58, 73 61, 69 64
+             C 65 67, 63 72, 58 74
+             C 53 76, 49 74, 46 77
+             C 43 80, 44 84, 41 86
+             C 38 88, 35 85, 32 87
+             C 29 89, 28 93, 25 94
+             C 22 95, 19 93, 17 95
+             C 18 89, 22 80, 27 72
+             C 33 63, 41 56, 49 51
+             C 53 48, 49 46, 45 46 Z"
+          fill="url(#foamTopGrad)"/>
+
+    <!-- Characteristic Rounded Apple Foam Claws / Fingers (Curling over the crest) -->
+    <!-- Claw 1 (Topmost rounded hook) -->
+    <path d="M 52 50 C 58 48, 64 49, 68 53 C 71 56, 73 60, 71 63 C 69 65, 66 64, 65 61 C 64 58, 61 56, 58 56 C 54 56, 52 53, 52 50 Z"
           fill="#ffffff"/>
 
-    <!-- Claw 2 (Upper left reaching claw) -->
-    <path d="M 40 52 C 34 56, 28 62, 21 68 C 17 72, 13 77, 10 83 C 9 85, 7 84, 7 82 C 8 76, 13 70, 18 64 C 24 57, 32 50, 40 52 Z"
+    <!-- Claw 2 (Down-curling rounded finger) -->
+    <path d="M 59 58 C 64 56, 68 59, 70 63 C 71 67, 69 71, 65 73 C 62 74, 60 72, 61 69 C 62 66, 61 63, 58 63 C 55 63, 56 59, 59 58 Z"
           fill="#ffffff"/>
 
-    <!-- Claw 3 (Secondary downward curling talon) -->
-    <path d="M 50 67 C 54 72, 53 80, 49 85 C 46 89, 41 91, 39 96 C 37 99, 39 102, 36 104 C 34 105, 32 103, 33 100 C 35 95, 39 91, 42 87 C 46 82, 47 75, 45 70 C 44 66, 47 64, 50 67 Z"
+    <!-- Claw 3 (Mid-curl rounded finger) -->
+    <path d="M 48 64 C 53 62, 57 65, 59 69 C 60 73, 58 77, 54 79 C 51 80, 49 78, 50 75 C 51 72, 49 70, 47 70 C 45 70, 45 66, 48 64 Z"
           fill="#ffffff"/>
 
-    <!-- Claw 4 (Mid-trough reaching finger) -->
-    <path d="M 58 79 C 61 84, 60 91, 56 96 C 53 100, 48 103, 46 108 C 44 111, 46 114, 43 116 C 41 117, 39 115, 40 112 C 42 107, 46 103, 49 99 C 53 94, 54 87, 52 82 C 51 78, 55 76, 58 79 Z"
+    <!-- Claw 4 (Leftmost inner curling claw) -->
+    <path d="M 40 70 C 44 68, 48 71, 49 75 C 50 78, 48 82, 44 83 C 41 84, 40 81, 41 79 C 42 76, 40 74, 38 74 C 36 74, 37 71, 40 70 Z"
           fill="#ffffff"/>
 
-    <!-- Claw 5 (Lower reaching spray finger) -->
-    <path d="M 66 90 C 68 95, 67 101, 63 106 C 60 110, 55 113, 53 118 C 51 121, 53 124, 50 126 C 48 127, 46 125, 47 122 C 49 117, 53 113, 56 109 C 60 104, 61 97, 59 92 C 58 88, 63 87, 66 90 Z"
-          fill="#ffffff"/>
+    <!-- 3D Puffy Foam Highlights (Gleaming white spherical crest tops) -->
+    <circle cx="26" cy="65" r="4.5" fill="#ffffff" opacity="0.95"/>
+    <circle cx="34" cy="56" r="5.2" fill="#ffffff" opacity="0.95"/>
+    <circle cx="43" cy="50" r="5.6" fill="#ffffff" opacity="0.95"/>
+    <circle cx="53" cy="49" r="4.8" fill="#ffffff" opacity="0.95"/>
+    <circle cx="63" cy="52" r="4.2" fill="#ffffff" opacity="0.95"/>
+    <circle cx="73" cy="56" r="3.8" fill="#ffffff" opacity="0.95"/>
 
-    <!-- Top Crest Spray Claws (Curling over the top peak) -->
-    <path d="M 48 45 C 45 42, 40 43, 37 46 C 35 48, 36 50, 39 49 C 42 47, 46 47, 48 45 Z" fill="#ffffff"/>
-    <path d="M 55 47 C 53 43, 48 43, 45 46 C 44 48, 46 49, 48 48 C 51 47, 54 48, 55 47 Z" fill="#ffffff"/>
-    <path d="M 63 51 C 61 47, 56 46, 53 49 C 52 51, 54 52, 56 51 C 59 50, 62 52, 63 51 Z" fill="#ffffff"/>
-    <path d="M 72 59 C 71 55, 66 54, 63 57 C 62 59, 64 60, 66 59 C 69 58, 71 60, 72 59 Z" fill="#ffffff"/>
-    <path d="M 79 70 C 79 66, 75 64, 72 67 C 71 69, 73 70, 75 69 C 77 68, 79 71, 79 70 Z" fill="#ffffff"/>
+    <!-- Floating Sea Spray Bubbles / Droplets (Clean iOS emoji style) -->
+    <circle cx="67" cy="44" r="1.8" fill="#ffffff" opacity="0.95"/>
+    <circle cx="75" cy="47" r="1.5" fill="#ffffff" opacity="0.95"/>
+    <circle cx="80" cy="51" r="1.3" fill="#ffffff" opacity="0.95"/>
+    <circle cx="76" cy="63" r="1.4" fill="#ffffff" opacity="0.95"/>
+    <circle cx="71" cy="72" r="1.6" fill="#ffffff" opacity="0.95"/>
+    <circle cx="65" cy="78" r="1.4" fill="#ffffff" opacity="0.95"/>
 
-    <!-- 7. FOREGROUND FOAM CRESTS & FROTH (On lower surging wave) -->
-    <path d="M 6 107 C 11 103, 17 100, 24 96 C 30 92, 36 88, 41 82 C 43 80, 45 83, 43 85 C 38 91, 31 96, 25 100 C 18 104, 11 108, 6 112 Z"
-          fill="#ffffff"/>
-    <path d="M 12 118 C 17 114, 23 110, 30 106 C 36 102, 42 98, 47 92 C 48 90, 50 92, 49 94 C 44 100, 38 104, 31 108 C 24 112, 17 116, 12 121 Z"
-          fill="#ffffff"/>
-    <path d="M 16 128 C 22 124, 29 120, 36 115 C 42 110, 48 105, 53 99 C 54 97, 56 99, 55 101 C 49 107, 43 112, 36 117 C 29 121, 22 126, 16 131 Z"
-          fill="#ffffff"/>
-
-    <!-- Churning Sea Foam Swirls at Base -->
-    <ellipse cx="28" cy="148" rx="8" ry="4.5" fill="#f0f9ff" opacity="0.9"/>
-    <circle cx="27" cy="148" r="3.2" fill="#18417c"/>
-    <ellipse cx="46" cy="153" rx="10" ry="4.0" fill="#f0f9ff" opacity="0.85"/>
-    <circle cx="45" cy="153" r="2.8" fill="#102a54"/>
-    <ellipse cx="64" cy="150" rx="9" ry="4.2" fill="#f0f9ff" opacity="0.9"/>
-    <circle cx="63" cy="150" r="3.0" fill="#0b1b36"/>
-
-    <!-- 8. CLOUDS OF WHITE SEA SPRAY / DROPLETS (The famous Hokusai spray mist) -->
-    <!-- Spray drifting from primary curling crest -->
-    <g fill="#ffffff" opacity="0.95">
-      <!-- High crest spray cluster -->
-      <circle cx="34" cy="48" r="1.3"/>
-      <circle cx="28" cy="53" r="1.1"/>
-      <circle cx="22" cy="59" r="1.4"/>
-      <circle cx="17" cy="65" r="1.2"/>
-      <circle cx="12" cy="72" r="1.5"/>
-      <circle cx="8" cy="79" r="1.2"/>
-      <circle cx="5" cy="87" r="1.0"/>
-
-      <circle cx="31" cy="44" r="0.9"/>
-      <circle cx="25" cy="49" r="1.0"/>
-      <circle cx="19" cy="54" r="0.8"/>
-      <circle cx="14" cy="60" r="1.1"/>
-      <circle cx="9" cy="67" r="0.9"/>
-
-      <circle cx="38" cy="42" r="0.8"/>
-      <circle cx="43" cy="39" r="1.0"/>
-      <circle cx="49" cy="39" r="0.9"/>
-      <circle cx="56" cy="42" r="1.1"/>
-      <circle cx="63" cy="45" r="0.9"/>
-      <circle cx="70" cy="51" r="1.2"/>
-      <circle cx="76" cy="58" r="1.0"/>
-      <circle cx="82" cy="67" r="1.1"/>
-      <circle cx="86" cy="76" r="1.3"/>
-      <circle cx="87" cy="85" r="1.0"/>
-
-      <!-- Interior hollow spray mist -->
-      <circle cx="33" cy="82" r="1.1"/>
-      <circle cx="27" cy="87" r="0.9"/>
-      <circle cx="22" cy="94" r="1.2"/>
-      <circle cx="38" cy="91" r="1.0"/>
-      <circle cx="43" cy="86" r="0.8"/>
-      <circle cx="48" cy="93" r="1.1"/>
-      <circle cx="54" cy="90" r="0.9"/>
-      <circle cx="44" cy="101" r="1.2"/>
-      <circle cx="49" cy="106" r="1.0"/>
-      <circle cx="55" cy="102" r="1.1"/>
-      <circle cx="60" cy="97" r="0.8"/>
-
-      <circle cx="37" cy="110" r="1.0"/>
-      <circle cx="42" cy="116" r="1.2"/>
-      <circle cx="47" cy="120" r="0.9"/>
-      <circle cx="32" cy="122" r="1.1"/>
-      <circle cx="26" cy="126" r="1.0"/>
-      <circle cx="21" cy="133" r="1.3"/>
-
-      <!-- Fine micro-droplet mist -->
-      <circle cx="16" cy="50" r="0.6" opacity="0.8"/>
-      <circle cx="11" cy="56" r="0.6" opacity="0.8"/>
-      <circle cx="7" cy="63" r="0.7" opacity="0.8"/>
-      <circle cx="23" cy="43" r="0.6" opacity="0.75"/>
-      <circle cx="29" cy="38" r="0.7" opacity="0.75"/>
-      <circle cx="36" cy="36" r="0.6" opacity="0.7"/>
-      <circle cx="45" cy="35" r="0.7" opacity="0.7"/>
-      <circle cx="53" cy="36" r="0.6" opacity="0.7"/>
-      <circle cx="61" cy="39" r="0.7" opacity="0.75"/>
-      <circle cx="68" cy="44" r="0.6" opacity="0.8"/>
-      <circle cx="75" cy="48" r="0.7" opacity="0.8"/>
-      <circle cx="81" cy="54" r="0.6" opacity="0.8"/>
-      <circle cx="87" cy="62" r="0.7" opacity="0.85"/>
-      <circle cx="90" cy="71" r="0.6" opacity="0.85"/>
-      <circle cx="90" cy="80" r="0.7" opacity="0.85"/>
-    </g>
+    <!-- Extra spray mist dots -->
+    <circle cx="60" cy="42" r="1.1" fill="#e0f2fe" opacity="0.9"/>
+    <circle cx="71" cy="41" r="1.2" fill="#ffffff" opacity="0.9"/>
+    <circle cx="83" cy="47" r="1.0" fill="#ffffff" opacity="0.85"/>
   </g>
 </svg>
