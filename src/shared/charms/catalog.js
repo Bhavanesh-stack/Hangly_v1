@@ -282,8 +282,8 @@ const CharmCatalog = [
     radiusRatio: 0.156,
     knotInset: 0.94,
     sound: 'wave',
-    beadCount: 3,
-    bodyRun: 3,
+    beadCount: 2,
+    bodyRun: 2,
     palette: {
       primary: CharmColor.rgb(0.08, 0.42, 0.72),
       secondary: CharmColor.rgb(0.04, 0.24, 0.48),

@@ -1,201 +1,346 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg id="Layer_OceanWave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 92 165" width="92" height="165">
   <defs>
-    <!-- Cord and Bead Gradients -->
+    <!-- Cord & Bead Gradients -->
     <linearGradient id="cordGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#7d591b"/>
-      <stop offset="50%" stop-color="#c99f4a"/>
-      <stop offset="100%" stop-color="#604210"/>
+      <stop offset="0%" stop-color="#1c305c"/>
+      <stop offset="50%" stop-color="#4a73b8"/>
+      <stop offset="100%" stop-color="#0f1b36"/>
     </linearGradient>
 
-    <radialGradient id="pearlGrad" cx="35%" cy="30%" r="70%">
+    <!-- Metal Hoop & Wave Shading Gradients -->
+    <linearGradient id="hoopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2a58a7"/>
+      <stop offset="25%" stop-color="#1b3f7f"/>
+      <stop offset="60%" stop-color="#0e234d"/>
+      <stop offset="90%" stop-color="#17366d"/>
+      <stop offset="100%" stop-color="#2d60b3"/>
+    </linearGradient>
+
+    <linearGradient id="hoopHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#6ea5f7" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#23529d" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#0c1d3f" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <radialGradient id="sapphireBead" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#8ab9ff"/>
+      <stop offset="35%" stop-color="#2a5eb5"/>
+      <stop offset="75%" stop-color="#122f68"/>
+      <stop offset="100%" stop-color="#06122b"/>
+    </radialGradient>
+
+    <!-- Platinum & Diamond Setting Gradients -->
+    <linearGradient id="platGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#ffffff"/>
-      <stop offset="45%" stop-color="#f0f4f8"/>
-      <stop offset="80%" stop-color="#d9e2ec"/>
-      <stop offset="100%" stop-color="#9fb3c8"/>
+      <stop offset="35%" stop-color="#e2e8f0"/>
+      <stop offset="70%" stop-color="#94a3b8"/>
+      <stop offset="100%" stop-color="#475569"/>
+    </linearGradient>
+
+    <radialGradient id="diamondGleam" cx="35%" cy="30%" r="65%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="40%" stop-color="#f0f9ff"/>
+      <stop offset="75%" stop-color="#bae6fd"/>
+      <stop offset="95%" stop-color="#7dd3fc"/>
+      <stop offset="100%" stop-color="#38bdf8"/>
     </radialGradient>
 
-    <radialGradient id="aquaGrad" cx="35%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#e0fbfc"/>
-      <stop offset="35%" stop-color="#48cae4"/>
-      <stop offset="75%" stop-color="#0077b6"/>
-      <stop offset="100%" stop-color="#023e8a"/>
-    </radialGradient>
-
-    <radialGradient id="lapisGrad" cx="35%" cy="30%" r="70%">
-      <stop offset="0%" stop-color="#90e0ef"/>
-      <stop offset="30%" stop-color="#0077b6"/>
-      <stop offset="70%" stop-color="#03045e"/>
-      <stop offset="100%" stop-color="#0a1128"/>
-    </radialGradient>
-
-    <linearGradient id="goldCapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#fef08a"/>
-      <stop offset="45%" stop-color="#eab308"/>
-      <stop offset="85%" stop-color="#ca8a04"/>
-      <stop offset="100%" stop-color="#854d0e"/>
+    <!-- Wave Sculpted Texture Gradients -->
+    <linearGradient id="waveDeep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14346e"/>
+      <stop offset="40%" stop-color="#1a428a"/>
+      <stop offset="75%" stop-color="#0f2652"/>
+      <stop offset="100%" stop-color="#08142c"/>
     </linearGradient>
 
-    <!-- Medallion Rim Gradients -->
-    <radialGradient id="rimGrad" cx="35%" cy="30%" r="75%">
-      <stop offset="0%" stop-color="#fef9c3"/>
-      <stop offset="40%" stop-color="#eab308"/>
-      <stop offset="75%" stop-color="#ca8a04"/>
-      <stop offset="95%" stop-color="#713f12"/>
-      <stop offset="100%" stop-color="#422006"/>
-    </radialGradient>
-
-    <linearGradient id="skyGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#fdf0d5"/>
-      <stop offset="35%" stop-color="#f7d6a5"/>
-      <stop offset="65%" stop-color="#c6dcdd"/>
-      <stop offset="100%" stop-color="#729baf"/>
+    <linearGradient id="waveMid" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#122b59"/>
+      <stop offset="50%" stop-color="#2357a8"/>
+      <stop offset="85%" stop-color="#3b7ad9"/>
+      <stop offset="100%" stop-color="#6ba6f7"/>
     </linearGradient>
 
-    <!-- Wave Gradients -->
-    <linearGradient id="deepWaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#001845"/>
-      <stop offset="50%" stop-color="#023e8a"/>
-      <stop offset="100%" stop-color="#0466c8"/>
+    <linearGradient id="waveCrestShade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1e468a"/>
+      <stop offset="60%" stop-color="#132c57"/>
+      <stop offset="100%" stop-color="#09152b"/>
     </linearGradient>
 
-    <linearGradient id="midWaveGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0077b6"/>
-      <stop offset="60%" stop-color="#0096c7"/>
-      <stop offset="100%" stop-color="#48cae4"/>
-    </linearGradient>
-
-    <linearGradient id="crestGrad" x1="0%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" stop-color="#0096c7"/>
-      <stop offset="50%" stop-color="#caf0f8"/>
-      <stop offset="100%" stop-color="#ffffff"/>
-    </linearGradient>
-
-    <!-- Clip Path for Medallion Content -->
-    <clipPath id="medallionClip">
-      <circle cx="46" cy="105" r="38"/>
-    </clipPath>
+    <!-- Filter for Diamond Sparkle Glow -->
+    <filter id="diamondGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="0.6" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
   </defs>
 
   <!-- ================= TOP SUSPENSION CORD & THREADED BEADS ================= -->
-  <!-- Main Hanging Cord -->
-  <line x1="46" y1="0" x2="46" y2="48" stroke="url(#cordGrad)" stroke-width="3.6" stroke-linecap="round"/>
+  <!-- Hanging Silk Cord -->
+  <line x1="46" y1="0" x2="46" y2="48" stroke="url(#cordGrad)" stroke-width="3.2" stroke-linecap="round"/>
 
-  <!-- Bead 1: Pearl with Gold Caps -->
-  <path d="M 42 7 Q 46 9 50 7 L 49.5 6 Q 46 8 42.5 6 Z" fill="url(#goldCapGrad)"/>
-  <circle cx="46" cy="12" r="6.8" fill="url(#pearlGrad)"/>
-  <ellipse cx="44" cy="9.8" rx="2.5" ry="1.4" fill="#ffffff" opacity="0.85"/>
-  <path d="M 42 17 Q 46 15 50 17 L 49.5 18 Q 46 16 42.5 18 Z" fill="url(#goldCapGrad)"/>
+  <!-- Bead 1: Diamond Pave Rondelle (y: 11 - 19) -->
+  <ellipse cx="46" cy="11.5" rx="6.2" ry="1.8" fill="url(#platGrad)"/>
+  <ellipse cx="46" cy="15" rx="7.4" ry="4.2" fill="url(#platGrad)"/>
+  <!-- Diamond row on Bead 1 -->
+  <circle cx="41.2" cy="15" r="1.1" fill="url(#diamondGleam)"/>
+  <circle cx="44.2" cy="15.8" r="1.3" fill="url(#diamondGleam)"/>
+  <circle cx="47.8" cy="15.8" r="1.3" fill="url(#diamondGleam)"/>
+  <circle cx="50.8" cy="15" r="1.1" fill="url(#diamondGleam)"/>
+  <circle cx="46" cy="13.2" r="1.0" fill="#ffffff"/>
+  <ellipse cx="46" cy="18.5" rx="6.2" ry="1.8" fill="#334155"/>
 
-  <!-- Bead 2: Aquamarine Jewel Bead -->
-  <path d="M 41.5 19 Q 46 21 50.5 19 L 50 18 Q 46 20 42 18 Z" fill="url(#goldCapGrad)"/>
-  <circle cx="46" cy="24" r="7.2" fill="url(#aquaGrad)"/>
-  <ellipse cx="43.8" cy="21.5" rx="2.8" ry="1.6" fill="#ffffff" opacity="0.8"/>
-  <circle cx="48.5" cy="25.5" r="1.1" fill="#e0fbfc" opacity="0.9"/>
-  <path d="M 41.5 29 Q 46 27 50.5 29 L 50 30 Q 46 28 42 30 Z" fill="url(#goldCapGrad)"/>
+  <!-- Bead 2: Deep Sapphire Sphere with Diamond Spacer (y: 23 - 37) -->
+  <ellipse cx="46" cy="23.2" rx="4.5" ry="1.4" fill="url(#platGrad)"/>
+  <circle cx="46" cy="30" r="7.2" fill="url(#sapphireBead)"/>
+  <!-- Specular curved highlight on sphere -->
+  <ellipse cx="43.8" cy="27.4" rx="2.8" ry="1.6" fill="#ffffff" opacity="0.8"/>
+  <ellipse cx="46" cy="36.8" rx="4.5" ry="1.4" fill="#1e293b"/>
 
-  <!-- Bead 3: Lapis Lazuli Ocean Bead -->
-  <path d="M 41 31 Q 46 33 51 31 L 50.5 30 Q 46 32 41.5 30 Z" fill="url(#goldCapGrad)"/>
-  <circle cx="46" cy="36" r="7.5" fill="url(#lapisGrad)"/>
-  <ellipse cx="43.6" cy="33.2" rx="3.0" ry="1.7" fill="#ffffff" opacity="0.75"/>
-  <!-- Gold Fleck Accents in Lapis -->
-  <circle cx="48" cy="37" r="0.8" fill="#ffd166" opacity="0.85"/>
-  <circle cx="44" cy="38.5" r="0.6" fill="#ffd166" opacity="0.75"/>
-  <path d="M 41 41 Q 46 39 51 41 L 50.5 42 Q 46 40 41.5 42 Z" fill="url(#goldCapGrad)"/>
+  <!-- Top Bail Loop with Diamond Setting (y: 43 - 56) -->
+  <!-- Outer Bail Frame -->
+  <path d="M 43.2 43 C 43.2 41.5 48.8 41.5 48.8 43 L 48.8 54.5 C 48.8 55.5 43.2 55.5 43.2 54.5 Z" fill="url(#platGrad)" stroke="#1e293b" stroke-width="0.7"/>
+  <ellipse cx="46" cy="48" rx="1.6" ry="3.5" fill="#0f172a"/>
+  <!-- Vertical column of pave diamonds on the bail -->
+  <circle cx="44.5" cy="44.5" r="0.8" fill="#ffffff"/>
+  <circle cx="47.5" cy="44.5" r="0.8" fill="#ffffff"/>
+  <circle cx="44.5" cy="47.5" r="0.8" fill="#ffffff"/>
+  <circle cx="47.5" cy="47.5" r="0.8" fill="#ffffff"/>
+  <circle cx="44.5" cy="50.5" r="0.8" fill="#ffffff"/>
+  <circle cx="47.5" cy="50.5" r="0.8" fill="#ffffff"/>
+  <circle cx="46" cy="53.2" r="0.9" fill="#ffffff"/>
 
-  <!-- Attachment Knot Ring -->
-  <circle cx="46" cy="46" r="4.8" fill="none" stroke="url(#goldCapGrad)" stroke-width="2.6"/>
-  <circle cx="46" cy="46" r="2.2" fill="#1e1403"/>
+  <!-- ================= THE TALISMAN: CIRCULAR HOOP & GREAT WAVE PENDANT ================= -->
+  <!-- Pendant Center at (46, 106), Outer Radius 38 -->
 
-  <!-- ================= THE GREAT WAVE TALISMAN / MEDALLION ================= -->
-  <!-- Outer Shadow & Base Rim -->
-  <circle cx="46" cy="105.5" r="41" fill="#1a1205" opacity="0.35"/>
-  <circle cx="46" cy="105" r="40.5" fill="url(#rimGrad)"/>
-  <circle cx="46" cy="105" r="38.5" fill="#422006"/>
-  <circle cx="46" cy="105" r="38" fill="url(#skyGrad)"/>
+  <!-- 1. Ambient Drop Shadow -->
+  <circle cx="46" cy="107" r="38.5" fill="#030712" opacity="0.32"/>
 
-  <!-- Inner Clipped Artwork -->
-  <g clip-path="url(#medallionClip)">
-    <!-- Horizon Golden Glow -->
-    <ellipse cx="46" cy="98" rx="38" ry="18" fill="#ffe3a8" opacity="0.45"/>
+  <!-- 2. Outer Sculpted Blue Titanium Hoop Frame -->
+  <!-- Base Outer Circle -->
+  <circle cx="46" cy="106" r="38.5" fill="none" stroke="url(#hoopGrad)" stroke-width="3.8"/>
+  <!-- Inner Bevel Accent -->
+  <circle cx="46" cy="106" r="36.8" fill="none" stroke="#08142c" stroke-width="0.9" opacity="0.9"/>
+  <!-- Outer Light Reflection Rim -->
+  <path d="M 18 85 A 38.5 38.5 0 0 1 74 85" fill="none" stroke="url(#hoopHighlight)" stroke-width="1.2" opacity="0.85"/>
+  <circle cx="46" cy="106" r="40.2" fill="none" stroke="#2563eb" stroke-width="0.5" opacity="0.45"/>
 
-    <!-- Mt. Fuji in distance -->
-    <path d="M 50 99 L 57 88 L 60 88 L 68 99 Z" fill="#1b2a47"/>
-    <path d="M 57 88 L 60 88 L 62 92 L 60 93 L 58.5 91.5 L 57 93 Z" fill="#ffffff"/>
+  <!-- 3. Wave Structure Rising from Lower Hoop -->
+  <!-- Back Wall / Deep Cavity of the Wave (Provides rich dark relief behind the curling water) -->
+  <path d="M 12 114
+           C 12 96, 20 78, 36 71
+           C 44 67, 52 70, 50 78
+           C 48 83, 41 85, 36 94
+           C 32 101, 33 112, 38 120
+           C 43 128, 52 131, 62 127
+           C 71 123, 78 111, 83 96
+           C 85 106, 83 124, 76 133
+           C 66 144, 46 146, 28 141
+           C 18 135, 12 125, 12 114 Z"
+        fill="url(#waveDeep)"/>
 
-    <!-- Distant Sea Surface -->
-    <rect x="8" y="99" width="76" height="45" fill="#042a54"/>
+  <!-- 4. Main Towering Wave Body & Sculpted Water Flutes/Ripples -->
+  <path d="M 11.5 116
+           C 11.5 98, 18 83, 30 75
+           C 37 70, 47 69, 51 74
+           C 53 77, 51 81, 47 84
+           C 42 86, 38 83, 33 87
+           C 28 92, 27 101, 28 110
+           C 29 120, 34 130, 44 135
+           C 54 139, 68 135, 78 122
+           C 82 116, 84 107, 84 98
+           C 84.5 108, 83 123, 76 133
+           C 65 145, 45 146.5, 27 141.5
+           C 17 136, 11.5 127, 11.5 116 Z"
+        fill="url(#waveMid)"/>
 
-    <!-- Distant Low Waves -->
-    <path d="M 8 103 Q 22 98 36 102 T 64 100 T 84 103 L 84 145 L 8 145 Z" fill="#0a3a6b"/>
-    <path d="M 8 107 Q 24 102 40 106 T 70 104 T 84 107 L 84 145 L 8 145 Z" fill="#0d4b82"/>
+  <!-- Sculpted Concentric Flow Grooves (Fine engraved ripples along the wave body like the real jewelry) -->
+  <path d="M 14.5 125 C 16 112, 22 96, 32 86 C 37 81, 43 78, 48 80"
+        fill="none" stroke="#60a5fa" stroke-width="1.2" stroke-linecap="round" opacity="0.75"/>
+  <path d="M 17 131 C 20 118, 25 106, 34 97 C 39 92, 44 91, 48 94"
+        fill="none" stroke="#93c5fd" stroke-width="0.9" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 21 136 C 24 125, 29 114, 38 107 C 44 102, 49 104, 52 108"
+        fill="none" stroke="#3b82f6" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 26 140 C 33 135, 40 125, 46 117 C 50 112, 54 113, 56 117"
+        fill="none" stroke="#2563eb" stroke-width="0.8" stroke-linecap="round" opacity="0.5"/>
+  <path d="M 33 143 C 44 142, 55 137, 65 128 C 72 121, 77 112, 80 102"
+        fill="none" stroke="#60a5fa" stroke-width="1.0" stroke-linecap="round" opacity="0.65"/>
+  <path d="M 39 144.5 C 50 143, 60 138, 70 128 C 76 121, 80 113, 82 106"
+        fill="none" stroke="#93c5fd" stroke-width="0.8" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 45 145.2 C 55 144, 66 138, 74 128 C 79 121, 82 116, 83.5 110"
+        fill="none" stroke="#bfdbfe" stroke-width="0.6" stroke-linecap="round" opacity="0.5"/>
 
-    <!-- Secondary Wave (Counter-Wave on Right) -->
-    <path d="M 84 122 C 72 118 64 115 54 118 C 46 120 40 128 35 138 L 84 145 Z" fill="url(#deepWaveGrad)"/>
-    <path d="M 84 124 C 74 120 66 117 56 120 C 49 122 43 129 38 138 L 84 145 Z" fill="url(#midWaveGrad)"/>
-    <!-- Foam on Secondary Wave -->
-    <path d="M 54 117 C 58 116 64 118 70 120 C 76 122 81 123 84 123 L 84 126 C 80 125 75 124 69 122 C 63 120 57 119 54 120 Z" fill="#ffffff"/>
+  <!-- 5. Secondary Inner Wave (Nestled in the center of the crest) -->
+  <path d="M 36 130
+           C 36 120, 39 110, 46 104
+           C 51 99, 58 101, 57 107
+           C 56 112, 51 113, 48 118
+           C 45 123, 46 130, 50 136 Z"
+        fill="url(#waveDeep)"/>
 
-    <!-- THE GREAT CRESTING WAVE (Main Body) -->
-    <!-- Base Wave Body -->
-    <path d="M 8 145 C 8 126 12 110 18 96 C 22 87 27 79 34 74 C 40 70 48 68 53 71 C 57 73 59 78 57 83 C 55 87 50 89 44 88 C 37 87 32 82 29 88 C 26 94 28 104 26 112 C 24 121 18 135 8 145 Z" fill="url(#deepWaveGrad)"/>
+  <path d="M 38 132
+           C 38 122, 41 112, 47 106
+           C 51 102, 56 103, 56 108
+           C 55 113, 50 115, 48 120
+           C 46 124, 47 131, 51 136 Z"
+        fill="url(#waveMid)"/>
 
-    <!-- Inner Mid-Wave Curve -->
-    <path d="M 8 145 C 10 130 14 117 20 104 C 24 96 29 89 36 84 C 42 80 49 79 53 82 C 55 84 56 87 54 90 C 51 93 46 94 41 93 C 35 91 30 92 28 98 C 26 104 27 114 24 122 C 20 131 15 140 8 145 Z" fill="url(#midWaveGrad)"/>
+  <!-- Flute lines on secondary wave -->
+  <path d="M 41 127 C 42 119, 45 112, 49 108" fill="none" stroke="#93c5fd" stroke-width="0.8" opacity="0.8"/>
+  <path d="M 44 131 C 45 123, 48 117, 52 114" fill="none" stroke="#bfdbfe" stroke-width="0.7" opacity="0.75"/>
 
-    <!-- High Crest Foaming Claws & Spray Layer -->
-    <!-- Wave Claw 1 (Topmost Curl) -->
-    <path d="M 33 76 C 38 71 46 68 53 70 C 58 72 61 77 59 82 C 57 85 53 86 49 84 C 45 82 43 78 40 80 C 37 82 36 86 38 89 C 39 91 43 92 46 91 C 49 90 51 86 54 86 C 56 86 58 88 57 91 C 55 95 49 96 44 95 C 38 94 33 89 30 84 C 27 79 30 78 33 76 Z" fill="url(#crestGrad)"/>
+  <!-- 6. Sculpted Crest Claws & Diamond Bezel Settings -->
+  <!-- Main Wave Crest Platinum Sculpted Base for Pave Setting -->
+  <path d="M 28 85
+           C 27 80, 29 74, 34 70
+           C 39 66, 47 65, 51 71
+           C 54 75, 54 80, 50 83
+           C 47 85, 43 83, 40 85
+           C 37 87, 36 90, 38 93
+           C 40 95, 44 94, 47 92
+           C 49 90, 52 91, 51 94
+           C 48 98, 42 98, 38 96
+           C 33 93, 31 89, 28 85 Z"
+        fill="url(#platGrad)" stroke="#1e293b" stroke-width="0.6"/>
 
-    <!-- Distinctive White Wave Claws (Hokusai Fingers) -->
-    <!-- Finger 1 -->
-    <path d="M 52 70 C 56 70 60 74 58 78 C 57 80 54 80 53 78 C 52 75 50 73 47 74 C 45 74 44 73 45 71 C 47 69 50 70 52 70 Z" fill="#ffffff"/>
-    <!-- Finger 2 -->
-    <path d="M 58 77 C 62 79 63 84 60 87 C 59 88 56 87 56 85 C 56 83 58 81 56 80 C 54 79 55 77 58 77 Z" fill="#ffffff"/>
-    <!-- Finger 3 -->
-    <path d="M 55 83 C 58 85 58 89 55 91 C 53 92 51 90 52 88 C 53 86 54 85 52 84 C 51 83 52 82 55 83 Z" fill="#ffffff"/>
-    <!-- Finger 4 (Back curl) -->
-    <path d="M 43 73 C 45 68 50 67 52 69 C 50 71 47 72 45 75 Z" fill="#ffffff"/>
-    <!-- Finger 5 (Forward plunge) -->
-    <path d="M 48 83 C 51 82 54 84 53 86 C 50 87 47 86 46 84 Z" fill="#ffffff"/>
+  <!-- Secondary Wave Crest Platinum Setting -->
+  <path d="M 44 110
+           C 44 105, 47 101, 52 101
+           C 56 101, 58 105, 57 108
+           C 55 111, 51 112, 49 116
+           C 47 119, 45 115, 44 110 Z"
+        fill="url(#platGrad)" stroke="#1e293b" stroke-width="0.5"/>
 
-    <!-- Wave Swirl Lines (Traditional Japanese Ukiyo-e Striae) -->
-    <path d="M 12 142 C 16 125 21 112 26 100 C 30 92 35 86 42 83" fill="none" stroke="#caf0f8" stroke-width="1.2" opacity="0.85"/>
-    <path d="M 15 145 C 19 130 24 118 29 107 C 33 100 37 94 43 92" fill="none" stroke="#caf0f8" stroke-width="1.0" opacity="0.75"/>
-    <path d="M 19 145 C 23 135 27 125 32 116 C 36 109 40 104 46 102" fill="none" stroke="#90e0ef" stroke-width="0.8" opacity="0.7"/>
+  <!-- Left Flank Foam Spray Claws (Platinum Base) -->
+  <path d="M 18 108 C 15 104, 16 97, 21 93 C 24 90, 27 94, 25 98 C 24 102, 21 104, 18 108 Z"
+        fill="url(#platGrad)" stroke="#1e293b" stroke-width="0.5"/>
+  <path d="M 14 117 C 12 113, 14 109, 17 107 C 19 105, 20 108, 19 112 C 17 115, 15 116, 14 117 Z"
+        fill="url(#platGrad)" stroke="#1e293b" stroke-width="0.4"/>
 
-    <!-- White Sea Spray / Droplet Particles -->
-    <circle cx="56" cy="67" r="1.3" fill="#ffffff"/>
-    <circle cx="61" cy="71" r="1.1" fill="#ffffff"/>
-    <circle cx="64" cy="76" r="0.9" fill="#ffffff"/>
-    <circle cx="66" cy="82" r="1.2" fill="#ffffff"/>
-    <circle cx="63" cy="86" r="0.8" fill="#ffffff"/>
-    <circle cx="60" cy="92" r="1.0" fill="#ffffff"/>
+  <!-- ================= 7. SPARKLING DIAMOND ENCRUSTATION (PAVE CLUSTERS) ================= -->
+  <!-- MAIN WAVE CREST DIAMONDS (Varied faceted sizes with silver settings & brilliant facets) -->
+  <!-- Top Crest Diamond Cluster -->
+  <g id="crestDiamonds">
+    <!-- Big Crown Diamond -->
+    <circle cx="43.5" cy="69.5" r="1.8" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.4"/>
+    <polygon points="43.5,67.8 44.0,69.5 45.2,69.5 44.2,70.2 44.6,71.2 43.5,70.5 42.4,71.2 42.8,70.2 41.8,69.5 43.0,69.5" fill="#ffffff" opacity="0.9"/>
+    <circle cx="43.0" cy="69.0" r="0.5" fill="#ffffff"/>
 
-    <circle cx="49" cy="65" r="0.9" fill="#ffffff"/>
-    <circle cx="43" cy="67" r="1.1" fill="#ffffff"/>
-    <circle cx="37" cy="70" r="0.8" fill="#ffffff"/>
-    <circle cx="53" cy="63" r="0.7" fill="#ffffff"/>
+    <!-- Arch Diamonds -->
+    <circle cx="39.8" cy="71.0" r="1.5" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="39.4" cy="70.5" r="0.4" fill="#ffffff"/>
 
-    <circle cx="38" cy="94" r="1.0" fill="#ffffff" opacity="0.9"/>
-    <circle cx="33" cy="98" r="0.8" fill="#ffffff" opacity="0.85"/>
-    <circle cx="35" cy="103" r="1.1" fill="#ffffff" opacity="0.9"/>
+    <circle cx="36.5" cy="73.5" r="1.4" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="36.1" cy="73.0" r="0.4" fill="#ffffff"/>
 
-    <circle cx="68" cy="116" r="0.8" fill="#ffffff"/>
-    <circle cx="73" cy="118" r="1.0" fill="#ffffff"/>
-    <circle cx="61" cy="114" r="0.9" fill="#ffffff"/>
+    <circle cx="33.8" cy="76.8" r="1.5" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="33.4" cy="76.3" r="0.4" fill="#ffffff"/>
 
-    <!-- Deep Water Bottom Rim -->
-    <path d="M 8 138 Q 46 142 84 138 L 84 145 L 8 145 Z" fill="#001233"/>
+    <circle cx="31.2" cy="80.5" r="1.4" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="30.8" cy="80.0" r="0.4" fill="#ffffff"/>
+
+    <circle cx="29.2" cy="84.5" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="27.8" cy="88.5" r="1.1" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <!-- Right Crest Curl Diamonds -->
+    <circle cx="47.2" cy="70.5" r="1.6" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="46.8" cy="70.0" r="0.4" fill="#ffffff"/>
+
+    <circle cx="50.2" cy="73.0" r="1.4" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="49.8" cy="72.5" r="0.4" fill="#ffffff"/>
+
+    <circle cx="51.8" cy="76.8" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="49.5" cy="80.5" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="46.2" cy="81.8" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <!-- Inside Pave Bed Diamonds -->
+    <circle cx="41.5" cy="74.5" r="1.4" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="45.0" cy="75.2" r="1.5" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="48.0" cy="76.5" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <circle cx="37.8" cy="77.5" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="41.2" cy="78.8" r="1.4" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="44.5" cy="79.5" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <circle cx="35.5" cy="82.0" r="1.4" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="38.8" cy="83.2" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="42.0" cy="84.2" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <circle cx="33.5" cy="86.8" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="36.8" cy="87.8" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="40.0" cy="88.8" r="1.1" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <!-- Foam Tip Droplets / Diamonds -->
+    <circle cx="43.2" cy="92.2" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="46.5" cy="91.5" r="1.0" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="49.2" cy="92.8" r="0.9" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.25"/>
+    <circle cx="38.2" cy="93.8" r="1.0" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.25"/>
   </g>
 
-  <!-- Inner Bezel Ring Highlight -->
-  <circle cx="46" cy="105" r="38" fill="none" stroke="url(#goldCapGrad)" stroke-width="1.8" opacity="0.9"/>
-  <circle cx="46" cy="105" r="39.6" fill="none" stroke="#ffffff" stroke-width="0.7" opacity="0.6"/>
+  <!-- SECONDARY WAVE DIAMOND CLUSTER -->
+  <g id="secondaryDiamonds">
+    <circle cx="49.5" cy="103.5" r="1.5" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="49.1" cy="103.0" r="0.4" fill="#ffffff"/>
 
-  <!-- ================= BOTTOM PENDANT / TALISMAN ACCENT ================= -->
-  <!-- Bottom Golden Wave Crest Finial -->
-  <path d="M 46 145 L 49 149 L 52 147 L 50 152 L 46 156 L 42 152 L 40 147 L 43 149 Z" fill="url(#goldCapGrad)"/>
-  <circle cx="46" cy="158" r="2.2" fill="url(#aquaGrad)"/>
-  <circle cx="46" cy="158" r="1.0" fill="#ffffff" opacity="0.85"/>
+    <circle cx="46.8" cy="105.0" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="52.8" cy="104.5" r="1.4" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="55.5" cy="107.0" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <circle cx="44.8" cy="108.8" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="48.0" cy="108.5" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="51.2" cy="109.2" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="54.2" cy="111.0" r="1.1" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <circle cx="43.2" cy="113.2" r="1.1" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="46.5" cy="113.5" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="49.5" cy="114.2" r="1.1" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="52.2" cy="115.8" r="0.9" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.25"/>
+
+    <circle cx="41.5" cy="117.8" r="1.0" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.25"/>
+    <circle cx="44.8" cy="118.2" r="1.1" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="47.8" cy="119.0" r="1.0" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.25"/>
+  </g>
+
+  <!-- LOWER LEFT FLANK DIAMOND SPRAY (As in reference photo) -->
+  <g id="flankDiamonds">
+    <circle cx="23.2" cy="94.5" r="1.4" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.35"/>
+    <circle cx="20.5" cy="97.2" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="24.8" cy="98.5" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <circle cx="18.2" cy="101.5" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="21.8" cy="102.8" r="1.3" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="25.5" cy="103.5" r="1.1" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <circle cx="16.5" cy="106.8" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="19.5" cy="107.5" r="1.2" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="22.8" cy="108.5" r="1.1" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+
+    <circle cx="15.2" cy="112.5" r="1.1" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="18.2" cy="113.2" r="1.1" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.3"/>
+    <circle cx="21.2" cy="114.5" r="1.0" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.25"/>
+
+    <circle cx="14.2" cy="118.5" r="1.0" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.25"/>
+    <circle cx="17.0" cy="119.5" r="1.0" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.25"/>
+    <circle cx="19.8" cy="120.5" r="0.9" fill="url(#diamondGleam)" stroke="#475569" stroke-width="0.25"/>
+  </g>
+
+  <!-- 8. BRILLIANT DIAMOND STARBURST SPARKLE ACCENTS -->
+  <!-- 4-point Diamond Star Glints -->
+  <g id="sparkleGlints" fill="#ffffff" opacity="0.95">
+    <!-- Starburst on top crest -->
+    <path d="M 43.5 66.5 Q 43.5 69.5 40.5 69.5 Q 43.5 69.5 43.5 72.5 Q 43.5 69.5 46.5 69.5 Q 43.5 69.5 43.5 66.5 Z"/>
+    <circle cx="43.5" cy="69.5" r="0.6" fill="#ffffff"/>
+
+    <!-- Starburst on secondary wave -->
+    <path d="M 49.5 101.2 Q 49.5 103.5 47.2 103.5 Q 49.5 103.5 49.5 105.8 Q 49.5 103.5 51.8 103.5 Q 49.5 103.5 49.5 101.2 Z"/>
+    <circle cx="49.5" cy="103.5" r="0.5" fill="#ffffff"/>
+
+    <!-- Starburst on left flank -->
+    <path d="M 23.2 92.5 Q 23.2 94.5 21.2 94.5 Q 23.2 94.5 23.2 96.5 Q 23.2 94.5 25.2 94.5 Q 23.2 94.5 23.2 92.5 Z"/>
+
+    <!-- Starburst on right curl -->
+    <path d="M 50.2 71.5 Q 50.2 73.0 48.7 73.0 Q 50.2 73.0 50.2 74.5 Q 50.2 73.0 51.7 73.0 Q 50.2 73.0 50.2 71.5 Z"/>
+  </g>
+
+  <!-- Bottom Rim Connection Accent (Where the hoop seamlessly welds at base) -->
+  <path d="M 42 144.5 C 44 145 48 145 50 144.5 L 48 147 C 46 147.5 44 147.5 44 147 Z" fill="url(#hoopGrad)"/>
 </svg>
