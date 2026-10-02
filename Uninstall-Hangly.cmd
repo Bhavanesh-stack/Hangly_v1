@@ -16,6 +16,7 @@ if exist "%APPDATA%\Hangly" rmdir /S /Q "%APPDATA%\Hangly" >nul 2>&1
 if exist "%APPDATA%\hangly" rmdir /S /Q "%APPDATA%\hangly" >nul 2>&1
 
 if exist "%USERPROFILE%\Desktop\Hangly.lnk" del /F /Q "%USERPROFILE%\Desktop\Hangly.lnk" >nul 2>&1
+if exist "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Hangly.lnk" del /F /Q "%APPDATA%\Microsoft\Windows\Start Menu\Programs\Hangly.lnk" >nul 2>&1
 
 echo.
 echo [DONE] Hangly has been completely removed from your system.

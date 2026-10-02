@@ -55,7 +55,36 @@ Hangly puts a tactile, beautiful companion at the top of your desktop screen tha
 
 ---
 
-## 📦 Installation Guide
+## 🚀 Quick Start & Consumer Lifecycle
+
+Hangly is engineered like a real-world product with an interactive control center, one-click Windows desktop installers, automated updaters, and complete clean-uninstallation.
+
+### 🎮 Hangly Control Center (`Hangly.cmd`)
+
+The easiest way to manage your entire Hangly installation is the unified interactive control center:
+
+Simply double-click **`Hangly.cmd`** in the repository root:
+
+```text
+====================================================================
+                  HANGLY DESKTOP COMPANION
+       A tiny piece of motion for your desktop. 240Hz Verlet.
+====================================================================
+
+  [1] Launch Hangly (Start Desktop Companion)
+  [2] Install Shortcuts (Create Desktop and Start Menu icons)
+  [3] Update Hangly (Pull latest features and charms from GitHub)
+  [4] Rebuild Standalone Executable (Compile Hangly-Portable.exe)
+  [5] Uninstall and Delete (Completely remove app, data, and cache)
+  [6] Exit
+
+====================================================================
+Please select an option (1-6):
+```
+
+---
+
+## 📦 Installation & Setup
 
 <a id="requirements"></a>
 ### 💻 System Requirements
@@ -70,117 +99,63 @@ Hangly puts a tactile, beautiful companion at the top of your desktop screen tha
 
 ---
 
-### ⚡ Method 1: Portable Standalone Executable (Fastest — No Node.js Needed)
+### ⚡ Option 1: 1-Click Desktop Installer (Recommended)
 
-Hangly distributes as a completely standalone, self-contained single `.exe` file with zero dependencies.
-
-1. **Download or Locate Executable**:
-   - The executable is located at **[`dist/Hangly-Portable.exe`](dist/Hangly-Portable.exe)** or downloadable from the [Releases](https://github.com/Bhavanesh-stack/Hangly_v1/releases) page.
-2. **One-Click Desktop Setup**:
-   - Double-click **`Install-Hangly.cmd`** in the repository root to automatically create a **Desktop shortcut** with icon and set up user directories.
-3. **Or Launch Directly**:
-   - Double-click **`dist/Hangly-Portable.exe`** directly from anywhere on your drive.
-   - The companion charm will immediately swing from the top edge of your screen, and the Hangly icon will appear in your Windows taskbar system tray.
-
-> [!NOTE]
-> **Windows SmartScreen Notice**:
-> Because Hangly is an independent open-source project without a commercial Extended Validation (EV) certificate, Windows Defender SmartScreen may display:
-> *"Windows protected your PC — Microsoft Defender SmartScreen prevented an unrecognized app from starting."*
-> 
-> Simply click **More info** → **Run anyway**. Hangly contains zero telemetry, zero trackers, and is 100% open-source with verifiable code in this repository.
+1. Clone or download this repository:
+   ```powershell
+   git clone https://github.com/Bhavanesh-stack/Hangly_v1.git
+   cd Hangly_v1
+   ```
+2. Double-click **`Install-Hangly.cmd`** (or choose Option 2 in `Hangly.cmd`).
+   - Verifies the pre-built standalone executable.
+   - Creates a **Desktop Shortcut** (`Hangly.lnk`) and a **Start Menu Shortcut**.
+   - Initializes `%APPDATA%\Hangly\Charms` for custom charms and persistent preferences.
+3. Launch Hangly anytime directly from your Desktop or Start Menu!
 
 ---
 
-### 🖥️ Method 2: Automated Desktop & System Installation Command
+### 🔄 Option 2: Updating Hangly (1-Click)
 
-If you have cloned the repository, you can set up Windows shortcuts and initialize application directories with a single command:
+Keep your charms, physics solver, and features up to date with the latest GitHub releases:
 
-```powershell
-# Installs application shortcuts to Desktop and Start Menu, and initializes %APPDATA%\Hangly
-npm run install:app
-```
+- **Via Control Center**: Run **`Hangly.cmd`** → select `[3] Update Hangly`.
+- **Via Dedicated Script**: Double-click **`Update-Hangly.cmd`**.
+- **Via In-App Settings**: Open **Settings** (`Ctrl+,`) → **About** tab → Click **Check for Updates**.
+- **Via Terminal**:
+  ```powershell
+  npm run update:app
+  ```
 
-*Or double-click `Install-Hangly.cmd` in Windows Explorer.*
+The updater fetches new commits from GitHub, updates dependencies, and automatically rebuilds `dist/Hangly-Portable.exe`.
 
 ---
 
-### 🛠️ Method 3: Running from Source (Developer Mode)
+### 🧹 Option 3: Clean Uninstallation & Data Deletion
 
-If you have Node.js installed and wish to run, customize, or inspect the code directly:
+To completely remove Hangly, remove shortcuts, wipe cached data, and unregister auto-start keys:
+
+- **Via In-App Settings**: Open **Settings** (`Ctrl+,`) → **About** tab → Click **Completely Uninstall & Wipe Data**.
+- **Via Script**: Double-click **`Uninstall-Hangly.cmd`**.
+- **Via Control Center**: Run **`Hangly.cmd`** → select `[5] Uninstall and Delete`.
+- **Via Terminal**:
+  ```powershell
+  npm run uninstall
+  ```
+
+---
+
+### 🛠️ Developer Mode (Running from Source)
 
 ```powershell
-# 1. Clone the repository
-git clone https://github.com/Bhavanesh-stack/Hangly_v1.git
-
-# 2. Navigate into project directory
-cd Hangly_v1
-
-# 3. Install NPM dependencies (Electron, Packager, Builder)
+# 1. Install dependencies
 npm install
 
-# 4. Launch Hangly in development mode with live transparent overlay
+# 2. Run with live hot-reloading
 npm start
-```
 
-*(Or double-click `Launch-Hangly.cmd` directly in the project folder).*
-
----
-
-### 🔨 Method 4: Building Standalone Executables from Source
-
-To compile and package fresh standalone Windows executables locally:
-
-```powershell
-# 1. Build single-file standalone portable .exe (Outputs to dist/Hangly-Portable.exe)
+# 3. Compile standalone portable executable
 npm run build:portable
-
-# 2. Build standard Windows NSIS setup wizard installer (Outputs to dist/Hangly-Setup.exe)
-npm run build:installer
-
-# 3. Build unpacked application folder distribution (Outputs to dist/Hangly-win32-x64/Hangly.exe)
-npm run build:dir
 ```
-
----
-
-### 🔄 Autostart at Windows Login
-
-To have Hangly automatically start when your computer boots:
-
-1. Right-click the **Hangly** tray icon in your taskbar notification area.
-2. Click **Settings** (or press `Ctrl+,`).
-3. In the **General** tab, enable **"Launch at Windows Startup"**.
-4. Settings are stored locally in `%APPDATA%\Hangly\settings.json`.
-
----
-
-### 🧹 Uninstallation & Clean Removal
-
-To completely delete the application, custom charms, autostart registry entries, and all saved settings:
-
-#### Method A: One-Click Script (Easiest)
-- Double-click **`Uninstall-Hangly.cmd`** in the repository root. It will terminate any running Hangly processes, unregister the Windows startup entry, and delete all `%APPDATA%` caches and preferences.
-
-#### Method B: Terminal / NPM Command
-```powershell
-# Run the built-in uninstaller script
-npm run uninstall
-```
-
-#### Method C: PowerShell One-Liner Command
-```powershell
-# Stop processes, remove autostart registry key, and delete all Hangly application data
-Stop-Process -Name "Hangly","electron" -ErrorAction SilentlyContinue; Remove-Item -Recurse -Force "$env:APPDATA\Hangly", "$env:APPDATA\hangly" -ErrorAction SilentlyContinue; Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Hangly" -ErrorAction SilentlyContinue; Write-Host "Hangly completely removed."
-```
-
-#### Method D: Standard Manual Removal
-- **Portable Executable**:
-  1. Right-click the Hangly tray icon and click **Quit Hangly** (`Ctrl+Q`).
-  2. Delete `Hangly-Portable.exe`.
-  3. Delete `%APPDATA%\Hangly` and `%APPDATA%\hangly` to remove preferences and custom imported charms.
-- **NSIS Installer**:
-  1. Open Windows **Settings** → **Apps** → **Installed apps**.
-  2. Search for **Hangly** and click **Uninstall**.
 
 ---
 

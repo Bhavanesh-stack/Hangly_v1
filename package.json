@@ -11,6 +11,7 @@
     "build:installer": "electron-builder --win nsis",
     "build:exe": "electron-builder --win portable",
     "install:app": "node scripts/install.js",
+    "update:app": "node scripts/update.js",
     "uninstall": "node scripts/uninstall.js"
   },
   "build": {

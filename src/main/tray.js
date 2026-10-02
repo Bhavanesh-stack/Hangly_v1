@@ -102,6 +102,23 @@ class HanglyTray {
       },
       { type: 'separator' },
       {
+        label: 'Create Desktop Shortcut',
+        click: () => {
+          try {
+            const installScript = path.join(__dirname, '..', '..', 'scripts', 'install.js');
+            const { execSync } = require('child_process');
+            execSync(`node "${installScript}"`, { stdio: 'pipe' });
+          } catch (e) {}
+        }
+      },
+      {
+        label: 'Check for Updates…',
+        click: () => {
+          this.ctx.openSettingsWindow();
+        }
+      },
+      { type: 'separator' },
+      {
         label: 'Quit Hangly',
         accelerator: 'CmdOrCtrl+Q',
         click: () => {

@@ -305,6 +305,52 @@ ipcMain.handle('delete-custom-charm', (event, id) => {
   return customCharmStore.deleteCharm(id);
 });
 
+// Maintenance & Product Lifecycle IPC Handlers
+ipcMain.handle('install-shortcuts', () => {
+  try {
+    const installScript = path.join(__dirname, '..', '..', 'scripts', 'install.js');
+    const { execSync } = require('child_process');
+    execSync(`node "${installScript}"`, { stdio: 'pipe' });
+    return { success: true, message: 'Desktop & Start Menu shortcuts successfully created!' };
+  } catch (err) {
+    return { success: false, message: `Failed to install shortcuts: ${err.message}` };
+  }
+});
+
+ipcMain.handle('check-update', () => {
+  try {
+    const rootDir = path.resolve(__dirname, '..', '..');
+    const { execSync } = require('child_process');
+    execSync('git fetch', { cwd: rootDir, stdio: 'pipe' });
+    const status = execSync('git status -uno', { cwd: rootDir, encoding: 'utf8' });
+    if (status.includes('Your branch is behind') || status.includes('have diverged')) {
+      return { success: true, hasUpdate: true, message: 'Update available on GitHub! Run Update-Hangly.cmd or Hangly.cmd to pull and rebuild.' };
+    }
+    return { success: true, hasUpdate: false, message: 'You are running the latest version of Hangly.' };
+  } catch (err) {
+    return { success: false, message: `Update check failed: ${err.message}` };
+  }
+});
+
+ipcMain.handle('uninstall-app', () => {
+  try {
+    const uninstallScript = path.join(__dirname, '..', '..', 'scripts', 'uninstall.js');
+    const { spawn } = require('child_process');
+    // Spawn detached uninstaller and quit immediately
+    const child = spawn('node', [uninstallScript], {
+      detached: true,
+      stdio: 'ignore'
+    });
+    child.unref();
+    setTimeout(() => {
+      app.quit();
+    }, 400);
+    return { success: true };
+  } catch (err) {
+    return { success: false, message: err.message };
+  }
+});
+
 // App Lifecycle
 app.whenReady().then(() => {
   tray = new HanglyTray({

@@ -196,3 +196,43 @@ btnReset.addEventListener('click', () => {
     ipcRenderer.invoke('reset-settings').then(populate);
   }
 });
+
+// Application Maintenance Controls
+const btnInstallShortcuts = document.getElementById('btn-install-shortcuts');
+const btnCheckUpdate = document.getElementById('btn-check-update');
+const btnUninstallApp = document.getElementById('btn-uninstall-app');
+const maintenanceStatus = document.getElementById('maintenance-status');
+
+if (btnInstallShortcuts) {
+  btnInstallShortcuts.addEventListener('click', async () => {
+    maintenanceStatus.textContent = 'Creating shortcuts...';
+    try {
+      const res = await ipcRenderer.invoke('install-shortcuts');
+      maintenanceStatus.textContent = res.message || 'Desktop & Start Menu shortcuts created!';
+    } catch (e) {
+      maintenanceStatus.textContent = 'Shortcut creation failed.';
+    }
+  });
+}
+
+if (btnCheckUpdate) {
+  btnCheckUpdate.addEventListener('click', async () => {
+    maintenanceStatus.textContent = 'Checking GitHub for updates...';
+    try {
+      const res = await ipcRenderer.invoke('check-update');
+      maintenanceStatus.textContent = res.message || 'Checked for updates.';
+    } catch (e) {
+      maintenanceStatus.textContent = 'Could not check updates.';
+    }
+  });
+}
+
+if (btnUninstallApp) {
+  btnUninstallApp.addEventListener('click', async () => {
+    const ok = confirm('WARNING: This will completely delete Hangly, all custom charms, user settings, and close the application.\n\nAre you sure you want to proceed?');
+    if (ok) {
+      maintenanceStatus.textContent = 'Uninstalling application and wiping data...';
+      await ipcRenderer.invoke('uninstall-app');
+    }
+  });
+}

@@ -50,15 +50,26 @@ for (const target of targets) {
   }
 }
 
-// 4. Remove Desktop Shortcuts if present
-if (process.platform === 'win32' && process.env.USERPROFILE) {
-  const desktopShortcut = path.join(process.env.USERPROFILE, 'Desktop', 'Hangly.lnk');
-  try {
-    if (fs.existsSync(desktopShortcut)) {
-      fs.unlinkSync(desktopShortcut);
-      console.log(`   ✓ Removed Desktop shortcut: ${desktopShortcut}`);
-    }
-  } catch (e) {}
+// 4. Remove Desktop and Start Menu Shortcuts if present
+if (process.platform === 'win32') {
+  if (process.env.USERPROFILE) {
+    const desktopShortcut = path.join(process.env.USERPROFILE, 'Desktop', 'Hangly.lnk');
+    try {
+      if (fs.existsSync(desktopShortcut)) {
+        fs.unlinkSync(desktopShortcut);
+        console.log(`   ✓ Removed Desktop shortcut: ${desktopShortcut}`);
+      }
+    } catch (e) {}
+  }
+  if (process.env.APPDATA) {
+    const startMenuShortcut = path.join(process.env.APPDATA, 'Microsoft', 'Windows', 'Start Menu', 'Programs', 'Hangly.lnk');
+    try {
+      if (fs.existsSync(startMenuShortcut)) {
+        fs.unlinkSync(startMenuShortcut);
+        console.log(`   ✓ Removed Start Menu shortcut: ${startMenuShortcut}`);
+      }
+    } catch (e) {}
+  }
 }
 
 console.log('\n✓ Hangly application and all associated data have been completely deleted.');
