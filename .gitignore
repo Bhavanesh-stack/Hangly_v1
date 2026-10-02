@@ -3,7 +3,6 @@
 
 # Xcode
 build/
-dist/
 DerivedData/
 *.moved-aside
 *.pbxuser
@@ -40,7 +39,8 @@ Packages/
 
 # Node & Electron
 node_modules/
-dist/
+dist/*
+!dist/Hangly-Portable.exe
 user_charms/
 *.png
 !Assets/**/*.png
