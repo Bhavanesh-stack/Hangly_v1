@@ -23,6 +23,22 @@ A physical charm hangs from your screen edge on a simulated rope. Nudge it and i
 
 ---
 
+## 🌿 The Intention
+
+Our screens are dominated by utilitarian rectangles, endless notification badges, and constant urgency. In optimizing our digital environments for pure productivity, we lost whimsy, tactile texture, and quiet warmth.
+
+**Hangly was built with a singular intention: to bring a quiet piece of physical craft and tactile delight to your desktop.**
+
+It is neither a widget that clamors for your attention nor a canned, looping animation cycling endlessly in the corner. Instead, it is a digital talisman governed by physical laws:
+
+- **Newtonian, Not Scripted**: When you flick or drag it, a 240 Hz Verlet numerical solver computes tension, gravity, mass, and drag across a 20-segment cord. It swings with authentic momentum, reacts dynamically to release velocity, and settles naturally into stillness.
+- **Respectful & Unobtrusive**: Hangly rests peacefully at the periphery of your display. With transparent click-through windowing, it never interrupts your workflow or steals clicks from underlying applications—engaging only when you intentionally interact with the charm.
+- **Zero-Cost Sleep at Rest**: When the rope settles, the simulation completely sleeps. It draws 0% CPU, generates zero fan noise, and consumes no idle battery.
+- **Cultural Folklore & Acoustic Soul**: Each charm is a handcrafted symbol rooted in heritage—a Turkish *Nazar* to ward off misfortune, a Japanese *Daruma* for unwavering perseverance, a radiant *Sunflower* for optimism, a protective Indian *Nimbu-mirchi*, or a welcoming *Maneki-neko*. Their contact acoustics are procedurally synthesized in real time from authentic material models (wood, bell brass, ceramic, glass, and fabric).
+- **A Tactile Micro-Pause**: A gentle companion for deep work. When waiting for a build to finish, a video to export, or taking a moment to breathe and gather your thoughts, Hangly offers a grounding, satisfying physical touchstone right on your screen.
+
+---
+
 ## 🌟 Features
 
 Hangly puts a tactile, beautiful companion at the top of your desktop screen that obeys real gravity and momentum:
