@@ -155,10 +155,28 @@ To have Hangly automatically start when your computer boots:
 
 ### 🧹 Uninstallation & Clean Removal
 
+To completely delete the application, custom charms, autostart registry entries, and all saved settings:
+
+#### Method A: One-Click Script (Easiest)
+- Double-click **`Uninstall-Hangly.cmd`** in the repository root. It will terminate any running Hangly processes, unregister the Windows startup entry, and delete all `%APPDATA%` caches and preferences.
+
+#### Method B: Terminal / NPM Command
+```powershell
+# Run the built-in uninstaller script
+npm run uninstall
+```
+
+#### Method C: PowerShell One-Liner Command
+```powershell
+# Stop processes, remove autostart registry key, and delete all Hangly application data
+Stop-Process -Name "Hangly","electron" -ErrorAction SilentlyContinue; Remove-Item -Recurse -Force "$env:APPDATA\Hangly", "$env:APPDATA\hangly" -ErrorAction SilentlyContinue; Remove-ItemProperty -Path "HKCU:\Software\Microsoft\Windows\CurrentVersion\Run" -Name "Hangly" -ErrorAction SilentlyContinue; Write-Host "Hangly completely removed."
+```
+
+#### Method D: Standard Manual Removal
 - **Portable Executable**:
   1. Right-click the Hangly tray icon and click **Quit Hangly** (`Ctrl+Q`).
   2. Delete `Hangly-Portable.exe`.
-  3. *(Optional)* If you wish to remove saved settings, delete `%APPDATA%\Hangly`.
+  3. Delete `%APPDATA%\Hangly` and `%APPDATA%\hangly` to remove preferences and custom imported charms.
 - **NSIS Installer**:
   1. Open Windows **Settings** → **Apps** → **Installed apps**.
   2. Search for **Hangly** and click **Uninstall**.
