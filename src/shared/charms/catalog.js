@@ -293,6 +293,88 @@ const CharmCatalog = [
     cordTint: CollectionCordTint
   },
 
+  // --- One Piece Edition ---
+  {
+    id: 'luffy',
+    name: 'Luffy',
+    category: 'onepiece',
+    type: 'svg',
+    svgFile: 'Luffy.svg',
+    mass: 3.20,
+    radiusRatio: 0.165,
+    knotInset: 0.94,
+    sound: 'drum',
+    beadCount: 2,
+    bodyRun: 2,
+    palette: {
+      primary: CharmColor.rgb(0.90, 0.10, 0.20),
+      secondary: CharmColor.rgb(0.95, 0.75, 0.15),
+      deep: CharmColor.rgb(0.40, 0.05, 0.10),
+      light: CharmColor.rgb(1.00, 0.90, 0.60)
+    },
+    cordTint: CollectionCordTint
+  },
+  {
+    id: 'zoro',
+    name: 'Zoro',
+    category: 'onepiece',
+    type: 'svg',
+    svgFile: 'Zoro.svg',
+    mass: 3.60,
+    radiusRatio: 0.165,
+    knotInset: 0.94,
+    sound: 'slash',
+    beadCount: 2,
+    bodyRun: 2,
+    palette: {
+      primary: CharmColor.rgb(0.12, 0.70, 0.35),
+      secondary: CharmColor.rgb(0.08, 0.45, 0.20),
+      deep: CharmColor.rgb(0.03, 0.20, 0.08),
+      light: CharmColor.rgb(0.80, 1.00, 0.85)
+    },
+    cordTint: CollectionCordTint
+  },
+  {
+    id: 'nami',
+    name: 'Nami',
+    category: 'onepiece',
+    type: 'svg',
+    svgFile: 'Nami.svg',
+    mass: 3.00,
+    radiusRatio: 0.165,
+    knotInset: 0.94,
+    sound: 'coin',
+    beadCount: 2,
+    bodyRun: 2,
+    palette: {
+      primary: CharmColor.rgb(1.00, 0.50, 0.10),
+      secondary: CharmColor.rgb(0.95, 0.80, 0.15),
+      deep: CharmColor.rgb(0.50, 0.20, 0.00),
+      light: CharmColor.rgb(1.00, 0.90, 0.70)
+    },
+    cordTint: CollectionCordTint
+  },
+  {
+    id: 'sanji',
+    name: 'Sanji',
+    category: 'onepiece',
+    type: 'svg',
+    svgFile: 'Sanji.svg',
+    mass: 3.30,
+    radiusRatio: 0.165,
+    knotInset: 0.94,
+    sound: 'kick',
+    beadCount: 2,
+    bodyRun: 2,
+    palette: {
+      primary: CharmColor.rgb(0.10, 0.35, 0.75),
+      secondary: CharmColor.rgb(0.95, 0.85, 0.25),
+      deep: CharmColor.rgb(0.03, 0.10, 0.30),
+      light: CharmColor.rgb(0.70, 0.85, 1.00)
+    },
+    cordTint: CollectionCordTint
+  },
+
   // --- The Classics (Geometric Vector) ---
   {
     id: 'circle',

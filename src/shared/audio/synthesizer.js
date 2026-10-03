@@ -77,6 +77,63 @@ const SoundSynthesizer = {
       attack: 0.22,
       noise: { duration: 2.1, decay: 0.80, smoothing: 0.055, gain: 0.78, attack: 0.24 },
       peak: 0.82
+    },
+    drum: {
+      // Luffy's Drums of Liberation / Bouncy Rubber Drum
+      fundamental: 82,
+      partials: [
+        { ratio: 1.00, amplitude: 1.00, decay: 0.45 },
+        { ratio: 1.48, amplitude: 0.70, decay: 0.35 },
+        { ratio: 2.15, amplitude: 0.45, decay: 0.22 },
+        { ratio: 3.20, amplitude: 0.25, decay: 0.12 }
+      ],
+      duration: 0.65,
+      attack: 0.002,
+      noise: { duration: 0.15, decay: 0.04, smoothing: 0.15, gain: 0.65 },
+      peak: 0.88
+    },
+    slash: {
+      // Zoro's Santoryu Katana Steel Slash / Clash
+      fundamental: 2400,
+      partials: [
+        { ratio: 1.00, amplitude: 1.00, decay: 0.60 },
+        { ratio: 1.414, amplitude: 0.80, decay: 0.45 },
+        { ratio: 2.73, amplitude: 0.55, decay: 0.30 },
+        { ratio: 4.12, amplitude: 0.35, decay: 0.18 },
+        { ratio: 5.60, amplitude: 0.20, decay: 0.10 }
+      ],
+      duration: 0.70,
+      attack: 0.001,
+      noise: { duration: 0.20, decay: 0.03, smoothing: 0.02, gain: 0.55 },
+      peak: 0.85
+    },
+    coin: {
+      // Nami's Golden Beri Clink & Shimmer
+      fundamental: 3100,
+      partials: [
+        { ratio: 1.00, amplitude: 1.00, decay: 0.50 },
+        { ratio: 2.05, amplitude: 0.65, decay: 0.38 },
+        { ratio: 3.15, amplitude: 0.45, decay: 0.25 },
+        { ratio: 5.20, amplitude: 0.30, decay: 0.15 }
+      ],
+      duration: 0.55,
+      attack: 0.001,
+      noise: { duration: 0.08, decay: 0.015, smoothing: 0.05, gain: 0.40 },
+      peak: 0.80
+    },
+    kick: {
+      // Sanji's Diable Jambe Flaming Kick Impact
+      fundamental: 115,
+      partials: [
+        { ratio: 1.00, amplitude: 1.00, decay: 0.35 },
+        { ratio: 1.65, amplitude: 0.55, decay: 0.25 },
+        { ratio: 2.45, amplitude: 0.35, decay: 0.18 },
+        { ratio: 3.80, amplitude: 0.18, decay: 0.10 }
+      ],
+      duration: 0.45,
+      attack: 0.003,
+      noise: { duration: 0.30, decay: 0.12, smoothing: 0.10, gain: 0.75, attack: 0.01 },
+      peak: 0.85
     }
   },
 

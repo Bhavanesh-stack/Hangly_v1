@@ -4,6 +4,7 @@
     { "id": "protection", "name": "Protection" },
     { "id": "luck", "name": "Luck & Fortune" },
     { "id": "ritual", "name": "Ritual & Home" },
+    { "id": "onepiece", "name": "One Piece 🏴‍☠️" },
     { "id": "classic", "name": "Classic" }
   ],
   "charms": [
@@ -168,6 +169,42 @@
       "description": "For photographers and the perpetually nostalgic. The heaviest charm in the box.",
       "tags": ["camera", "photo", "graphite", "heavy"],
       "previewImage": "charm-preview-camera"
+    },
+    {
+      "id": "luffy",
+      "name": "Luffy",
+      "region": "Grand Line / East Blue",
+      "category": "onepiece",
+      "description": "Monkey D. Luffy, captain of the Straw Hat Pirates. Boundless optimism, iron determination, and the Drums of Liberation swinging above your screen.",
+      "tags": ["luffy", "strawhat", "onepiece", "pirate", "sun", "drum", "anime"],
+      "previewImage": "charm-preview-luffy"
+    },
+    {
+      "id": "zoro",
+      "name: "Zoro",
+      "region": "Grand Line / East Blue",
+      "category": "onepiece",
+      "description": "Roronoa Zoro, the master swordsman of the Straw Hats. Always napping with his iconic grin and three golden earrings, ready to cut down any obstacle.",
+      "tags": ["zoro", "swordsman", "santoryu", "katana", "green", "onepiece", "slash"],
+      "previewImage": "charm-preview-zoro"
+    },
+    {
+      "id": "nami",
+      "name": "Nami",
+      "region": "Grand Line / East Blue",
+      "category": "onepiece",
+      "description": "Nami, the Cat Burglar and genius navigator. Glistening Beri-symbol eyes surrounded by flying gold coins, bringing wealth and fair winds.",
+      "tags": ["nami", "navigator", "beri", "gold", "orange", "onepiece", "coin"],
+      "previewImage": "charm-preview-nami"
+    },
+    {
+      "id": "sanji",
+      "name": "Sanji",
+      "region": "Grand Line / North Blue",
+      "category": "onepiece",
+      "description": "Black Leg Sanji, the chivalrous master chef. Swaying with cigarette smoke wisps and a heart eye, fired up by the passion of the All Blue.",
+      "tags": ["sanji", "cook", "diablejambe", "heart", "flame", "onepiece", "kick"],
+      "previewImage": "charm-preview-sanji"
     }
   ]
 }
