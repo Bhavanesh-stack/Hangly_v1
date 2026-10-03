@@ -273,8 +273,8 @@ const CharmCatalog = [
     cordTint: CollectionCordTint
   },
   {
-    id: 'wave',
-    name: 'Ocean Wave',
+    id: 'wave2',
+    name: 'Wave 2',
     category: 'ritual',
     type: 'svg',
     svgFile: 'wave2.svg',
@@ -382,6 +382,7 @@ const CharmCatalog = [
 ];
 
 function getCharmById(id) {
+  if (id === 'wave') return CharmCatalog.find(c => c.id === 'wave2') || CharmCatalog[0];
   return CharmCatalog.find(c => c.id === id) || CharmCatalog[0];
 }
 

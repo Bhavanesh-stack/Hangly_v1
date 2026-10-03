@@ -54,6 +54,7 @@ function getEffectiveCharm(baseCharm) {
 }
 
 function resolveCharm(charmId) {
+  if (charmId === 'wave') charmId = 'wave2';
   let charm = CharmCatalog.find(c => c.id === charmId);
   if (!charm) {
     try {
