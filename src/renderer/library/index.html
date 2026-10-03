@@ -59,6 +59,45 @@
           </div>
         </div>
 
+        <!-- Edit Charm Section -->
+        <div class="edit-section">
+          <div class="edit-section-header">
+            <span class="edit-section-title">Customize Charm</span>
+            <button id="btn-reset-custom" class="text-btn" title="Reset this charm to defaults">Reset</button>
+          </div>
+
+          <div class="edit-row">
+            <div class="edit-label-row">
+              <label for="edit-size">Charm Size</label>
+              <span class="edit-val-badge" id="edit-size-val">100%</span>
+            </div>
+            <input type="range" id="edit-size" class="slider" min="50" max="250" step="5" value="100">
+          </div>
+
+          <div class="edit-row">
+            <div class="edit-label-row">
+              <label for="edit-sound">Resonance Sound</label>
+              <button id="btn-test-sound" class="sound-test-btn" title="Test sound">🔊 Test</button>
+            </div>
+            <select id="edit-sound" class="select-dropdown">
+              <option value="wave">🌊 Wave (Ocean Swell)</option>
+              <option value="wood">🪵 Wood (Warm Knock)</option>
+              <option value="bell">🔔 Bell (Temple Chime)</option>
+              <option value="glass">🍷 Glass (Crystal Ping)</option>
+              <option value="metal">⚔️ Metal (Resonant Ring)</option>
+              <option value="soft">☁️ Soft (Gentle Thud)</option>
+            </select>
+          </div>
+
+          <div class="edit-row">
+            <div class="edit-label-row">
+              <label for="edit-mass">Weight (Mass)</label>
+              <span class="edit-val-badge" id="edit-mass-val">3.00</span>
+            </div>
+            <input type="range" id="edit-mass" class="slider" min="1.0" max="8.0" step="0.1" value="3.0">
+          </div>
+        </div>
+
         <button id="btn-hang-charm" class="primary-btn">Hang this Charm</button>
       </div>
     </aside>

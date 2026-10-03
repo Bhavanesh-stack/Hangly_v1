@@ -39,6 +39,20 @@ window.addEventListener('resize', () => {
 // Custom Charm Store & Charm Resolver
 const customCharmStore = new CustomCharmStore();
 
+function getEffectiveCharm(baseCharm) {
+  if (!baseCharm) return null;
+  const custom = currentSettings?.overlay?.charmCustomizations?.[baseCharm.id];
+  if (!custom) return baseCharm;
+  const scale = custom.scale !== undefined ? custom.scale : 1.0;
+  return {
+    ...baseCharm,
+    customScale: scale,
+    radiusRatio: (baseCharm.radiusRatio || 0.15) * scale,
+    sound: custom.sound || baseCharm.sound,
+    mass: custom.mass !== undefined ? custom.mass : baseCharm.mass
+  };
+}
+
 function resolveCharm(charmId) {
   let charm = CharmCatalog.find(c => c.id === charmId);
   if (!charm) {
@@ -47,7 +61,8 @@ function resolveCharm(charmId) {
       charm = customs.find(c => c.id === charmId);
     } catch (e) {}
   }
-  return charm || CharmCatalog[0];
+  const base = charm || CharmCatalog[0];
+  return getEffectiveCharm(base);
 }
 
 const customImageCache = {};
@@ -657,10 +672,9 @@ ipcRenderer.on('update-settings', (event, newSettings) => {
     soundPlayer.volume = newSettings.sound.volume ?? 1.0;
     soundPlayer.enabled = newSettings.sound.enabled ?? true;
   }
-  if (newSettings.overlay.charmId !== currentCharm.id) {
-    const charm = resolveCharm(newSettings.overlay.charmId);
-    applyCharm(charm, false);
-  }
+  const charmId = newSettings.overlay?.charmId || currentCharm.id;
+  const charm = resolveCharm(charmId);
+  applyCharm(charm, false);
 });
 
 ipcRenderer.on('switch-charm', (event, charmId, customCharmData) => {

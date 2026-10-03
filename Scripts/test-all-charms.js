@@ -3,10 +3,11 @@
 const { CharmCatalog } = require('../src/shared/charms/catalog');
 const { Splitter } = require('../src/shared/charms/splitter');
 const { ClassicCharms } = require('../src/shared/charms/classic-charms');
+const { getCharmSvgPath } = require('../src/shared/charms/asset-resolver');
 const path = require('path');
 const fs = require('fs');
 
-console.log('Testing all 16 charms in catalog...');
+console.log('Testing all charms in catalog...');
 let successCount = 0;
 
 for (const charm of CharmCatalog) {
@@ -14,8 +15,8 @@ for (const charm of CharmCatalog) {
 
   if (charm.type === 'svg') {
     const filename = charm.svgFile || `${charm.name}.svg`;
-    const svgPath = path.join(__dirname, '..', 'assets', 'charms', filename);
-    if (!fs.existsSync(svgPath)) {
+    const svgPath = getCharmSvgPath(filename);
+    if (!svgPath || !fs.existsSync(svgPath)) {
       console.error(`  FAIL: SVG file not found at ${svgPath}`);
       continue;
     }

@@ -25,11 +25,24 @@ const detailName = document.getElementById('detail-name');
 const detailCategory = document.getElementById('detail-category');
 const detailRegion = document.getElementById('detail-region');
 const detailDesc = document.getElementById('detail-desc');
+const { SoundPlayer } = require('../../shared/audio/synthesizer');
+const soundPlayer = new SoundPlayer();
+soundPlayer.preload();
+
 const detailTags = document.getElementById('detail-tags');
 const detailMass = document.getElementById('detail-mass');
 const detailSound = document.getElementById('detail-sound');
 const detailBeads = document.getElementById('detail-beads');
 const btnHang = document.getElementById('btn-hang-charm');
+
+// Edit Controls
+const editSize = document.getElementById('edit-size');
+const editSizeVal = document.getElementById('edit-size-val');
+const editSound = document.getElementById('edit-sound');
+const editMass = document.getElementById('edit-mass');
+const editMassVal = document.getElementById('edit-mass-val');
+const btnTestSound = document.getElementById('btn-test-sound');
+const btnResetCustom = document.getElementById('btn-reset-custom');
 
 const detailCanvas = document.getElementById('detail-canvas');
 const dctx = detailCanvas.getContext('2d');
@@ -38,6 +51,7 @@ let activeHangingId = 'daruma';
 let selectedCharm = getCharmById('daruma');
 let activeCategory = 'all';
 let customCharms = [];
+let appSettings = { overlay: { charmCustomizations: {} }, sound: { enabled: true, volume: 1.0 } };
 
 // Preview Simulation
 const previewSim = new RopeSimulation({
@@ -57,6 +71,36 @@ function getMetadata(id) {
 
 function getAllCharms() {
   return [...CharmCatalog, ...customCharms];
+}
+
+function getCharmCustomization(charmId) {
+  return (appSettings.overlay && appSettings.overlay.charmCustomizations && appSettings.overlay.charmCustomizations[charmId]) || null;
+}
+
+function getEffectiveMetrics(charm) {
+  const custom = getCharmCustomization(charm.id);
+  const scale = (custom && custom.scale !== undefined) ? custom.scale : 1.0;
+  const sound = (custom && custom.sound) ? custom.sound : (charm.sound || 'soft');
+  const mass = (custom && custom.mass !== undefined) ? custom.mass : (charm.mass || 3.0);
+  const radiusRatio = (charm.radiusRatio || 0.15) * scale;
+  return { scale, sound, mass, radiusRatio, knotInset: charm.knotInset || 0.94 };
+}
+
+function saveCurrentCharmCustomization() {
+  if (!appSettings.overlay) appSettings.overlay = {};
+  if (!appSettings.overlay.charmCustomizations) appSettings.overlay.charmCustomizations = {};
+
+  const scale = parseInt(editSize.value, 10) / 100;
+  const sound = editSound.value;
+  const mass = parseFloat(editMass.value);
+
+  appSettings.overlay.charmCustomizations[selectedCharm.id] = {
+    scale,
+    sound,
+    mass
+  };
+
+  ipcRenderer.invoke('save-settings', appSettings);
 }
 
 function renderGrid() {
@@ -146,18 +190,26 @@ function getLocalImageDataUrl(imagePath) {
 function selectCharm(charm) {
   selectedCharm = charm;
   const meta = getMetadata(charm.id);
+  const metrics = getEffectiveMetrics(charm);
 
   detailName.textContent = charm.name;
   detailCategory.textContent = charm.category ? charm.category.toUpperCase() : 'CHARM';
   detailRegion.textContent = meta.region || (charm.type === 'classic' ? 'Geometric Classic' : 'Custom Upload');
   detailDesc.textContent = meta.description || 'A unique charm with its own weight, swing dynamics, and acoustic resonance.';
 
-  detailMass.textContent = charm.mass.toFixed(2);
-  detailSound.textContent = (charm.sound || 'soft').toUpperCase();
+  detailMass.textContent = metrics.mass.toFixed(2);
+  detailSound.textContent = metrics.sound.toUpperCase();
   detailBeads.textContent = charm.beadCount !== undefined ? charm.beadCount : 0;
 
+  // Update edit form values
+  editSize.value = Math.round(metrics.scale * 100);
+  editSizeVal.textContent = `${editSize.value}%`;
+  editSound.value = metrics.sound;
+  editMass.value = metrics.mass.toFixed(1);
+  editMassVal.textContent = `${metrics.mass.toFixed(2)}`;
+
   detailTags.innerHTML = '';
-  const tags = meta.tags || [charm.category, charm.sound || 'glass'];
+  const tags = meta.tags || [charm.category, metrics.sound || 'glass'];
   tags.forEach(t => {
     const span = document.createElement('span');
     span.className = 'tag-badge';
@@ -166,13 +218,56 @@ function selectCharm(charm) {
   });
 
   previewSim.setCharmMetrics({
-    mass: charm.mass,
-    radiusRatio: charm.radiusRatio,
-    knotInset: charm.knotInset || 0.94
+    mass: metrics.mass,
+    radiusRatio: metrics.radiusRatio,
+    knotInset: metrics.knotInset
   });
   previewSim.reset();
   updatePreviewImg();
 }
+
+// Edit Section Event Listeners
+editSize.addEventListener('input', () => {
+  editSizeVal.textContent = `${editSize.value}%`;
+  const metrics = getEffectiveMetrics(selectedCharm);
+  const scale = parseInt(editSize.value, 10) / 100;
+  const effectiveRadiusRatio = (selectedCharm.radiusRatio || 0.15) * scale;
+
+  previewSim.setCharmMetrics({
+    radiusRatio: effectiveRadiusRatio,
+    mass: parseFloat(editMass.value) || selectedCharm.mass,
+    knotInset: selectedCharm.knotInset || 0.94
+  });
+  saveCurrentCharmCustomization();
+});
+
+editSound.addEventListener('change', () => {
+  detailSound.textContent = editSound.value.toUpperCase();
+  soundPlayer.play(editSound.value, 0.9);
+  saveCurrentCharmCustomization();
+});
+
+btnTestSound.addEventListener('click', () => {
+  soundPlayer.play(editSound.value, 0.95);
+});
+
+editMass.addEventListener('input', () => {
+  const val = parseFloat(editMass.value);
+  editMassVal.textContent = val.toFixed(2);
+  detailMass.textContent = val.toFixed(2);
+  previewSim.setCharmMetrics({
+    mass: val
+  });
+  saveCurrentCharmCustomization();
+});
+
+btnResetCustom.addEventListener('click', () => {
+  if (appSettings.overlay && appSettings.overlay.charmCustomizations) {
+    delete appSettings.overlay.charmCustomizations[selectedCharm.id];
+    ipcRenderer.invoke('save-settings', appSettings);
+  }
+  selectCharm(selectedCharm);
+});
 
 // Category filter chips
 document.querySelectorAll('.chip').forEach(chip => {
@@ -186,6 +281,7 @@ document.querySelectorAll('.chip').forEach(chip => {
 
 btnHang.addEventListener('click', () => {
   activeHangingId = selectedCharm.id;
+  saveCurrentCharmCustomization();
   ipcRenderer.invoke('select-charm', selectedCharm.id);
   renderGrid();
 });
@@ -195,7 +291,10 @@ Promise.all([
   ipcRenderer.invoke('get-settings'),
   ipcRenderer.invoke('get-custom-charms')
 ]).then(([settings, customs]) => {
-  activeHangingId = settings.overlay.charmId;
+  if (settings) {
+    appSettings = settings;
+    activeHangingId = settings.overlay.charmId;
+  }
   customCharms = customs || [];
   const found = getAllCharms().find(c => c.id === activeHangingId);
   if (found) selectCharm(found);
