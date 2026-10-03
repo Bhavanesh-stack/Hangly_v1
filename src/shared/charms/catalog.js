@@ -295,6 +295,26 @@ const CharmCatalog = [
 
   // --- One Piece Edition ---
   {
+    id: 'onepiece_helm',
+    name: 'Straw Hat Helm',
+    category: 'onepiece',
+    type: 'svg',
+    svgFile: 'OnePiece_Helm.svg',
+    mass: 3.40,
+    radiusRatio: 0.175,
+    knotInset: 0.94,
+    sound: 'drum',
+    beadCount: 2,
+    bodyRun: 2,
+    palette: {
+      primary: CharmColor.rgb(0.95, 0.75, 0.15),
+      secondary: CharmColor.rgb(0.90, 0.10, 0.20),
+      deep: CharmColor.rgb(0.20, 0.20, 0.20),
+      light: CharmColor.rgb(1.00, 1.00, 1.00)
+    },
+    cordTint: CollectionCordTint
+  },
+  {
     id: 'luffy',
     name: 'Luffy',
     category: 'onepiece',

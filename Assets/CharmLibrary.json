@@ -171,6 +171,15 @@
       "previewImage": "charm-preview-camera"
     },
     {
+      "id": "onepiece_helm",
+      "name": "Straw Hat Helm",
+      "region": "Thousand Sunny / Grand Line",
+      "category": "onepiece",
+      "description": "The Straw Hat Pirates Jolly Roger set upon the pirate ship steering wheel helm. Steer your course toward adventure across the Grand Line.",
+      "tags": ["ship", "wheel", "helm", "strawhat", "jollyroger", "sunny", "onepiece", "pirate", "drum"],
+      "previewImage": "charm-preview-helm"
+    },
+    {
       "id": "luffy",
       "name": "Luffy",
       "region": "Grand Line / East Blue",
