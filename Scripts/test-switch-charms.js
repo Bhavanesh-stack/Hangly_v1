@@ -18,7 +18,7 @@ app.whenReady().then(async () => {
 
   await win.loadFile(path.join(__dirname, '..', 'src', 'renderer', 'overlay', 'index.html'));
 
-  const testCharmIds = ['daruma', 'wave', 'nazar', 'manekiNeko', 'star', 'hamsa', 'heart', 'horseshoe'];
+  const testCharmIds = ['daruma', 'wave', 'wave2', 'wave_red', 'nazar', 'manekiNeko', 'star', 'hamsa', 'heart', 'horseshoe'];
 
   for (const charmId of testCharmIds) {
     console.log(`\nTesting charm switch to: ${charmId}`);

@@ -312,6 +312,26 @@ const CharmCatalog = [
     },
     cordTint: CollectionCordTint
   },
+  {
+    id: 'wave2',
+    name: 'Ocean Wave 2',
+    category: 'ritual',
+    type: 'svg',
+    svgFile: 'wave2.svg',
+    mass: 3.10,
+    radiusRatio: 0.156,
+    knotInset: 0.94,
+    sound: 'wave',
+    beadCount: 3,
+    bodyRun: 3,
+    palette: {
+      primary: CharmColor.rgb(0.00, 0.65, 0.82),
+      secondary: CharmColor.rgb(0.00, 0.38, 0.55),
+      deep: CharmColor.rgb(0.00, 0.11, 0.20),
+      light: CharmColor.rgb(0.71, 1.00, 1.00)
+    },
+    cordTint: CollectionCordTint
+  },
 
   // --- The Classics (Geometric Vector) ---
   {
