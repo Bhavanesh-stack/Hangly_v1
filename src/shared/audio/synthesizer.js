@@ -64,17 +64,19 @@ const SoundSynthesizer = {
       peak: 0.50
     },
     wave: {
-      fundamental: 85,
+      // Deep ocean wave: sub-bass swell + rolling white-water noise
+      fundamental: 58,
       partials: [
-        { ratio: 1.00, amplitude: 0.90, decay: 0.90 },
-        { ratio: 1.45, amplitude: 0.60, decay: 0.75 },
-        { ratio: 2.10, amplitude: 0.40, decay: 0.60 },
-        { ratio: 3.20, amplitude: 0.25, decay: 0.45 }
+        { ratio: 1.00, amplitude: 1.00, decay: 1.20 },   // sub-bass swell
+        { ratio: 1.55, amplitude: 0.65, decay: 0.95 },   // low body
+        { ratio: 2.20, amplitude: 0.42, decay: 0.72 },   // mid rumble
+        { ratio: 3.40, amplitude: 0.22, decay: 0.52 },   // upper harmonic
+        { ratio: 5.10, amplitude: 0.10, decay: 0.30 }    // air shimmer
       ],
-      duration: 1.4,
-      attack: 0.16,
-      noise: { duration: 1.5, decay: 0.55, smoothing: 0.08, gain: 0.65, attack: 0.18 },
-      peak: 0.85
+      duration: 2.0,
+      attack: 0.22,
+      noise: { duration: 2.1, decay: 0.80, smoothing: 0.055, gain: 0.78, attack: 0.24 },
+      peak: 0.82
     }
   },
 
