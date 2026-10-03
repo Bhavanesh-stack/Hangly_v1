@@ -13,6 +13,7 @@ const { Splitter } = require('../../shared/charms/splitter');
 const { SoundPlayer } = require('../../shared/audio/synthesizer');
 const { CustomCharmStore } = require('../../shared/charms/custom-store');
 const { getCharmSvgPath } = require('../../shared/charms/asset-resolver');
+const { RopeRenderer } = require('../../shared/charms/rope-renderer');
 
 const canvas = document.getElementById('rope-canvas');
 const ctx = canvas.getContext('2d', { alpha: true });
@@ -49,6 +50,7 @@ function getEffectiveCharm(baseCharm) {
     customScale: scale,
     radiusRatio: (baseCharm.radiusRatio || 0.15) * scale,
     sound: custom.sound || baseCharm.sound,
+    ropeStyle: custom.ropeStyle || baseCharm.ropeStyle || 'silk',
     mass: custom.mass !== undefined ? custom.mass : baseCharm.mass
   };
 }
@@ -401,79 +403,14 @@ function drawAmbientGlow(center, radius, palette) {
 function drawCord(snapshot, palette) {
   const points = sim.curve.polyline(snapshot.cordLength);
   if (points.length < 2) return;
-
-  const cordWidth = Math.max(1.5, snapshot.charmRadius * 0.046);
-
-  // Path generator
-  const createPath = (dx = 0, dy = 0) => {
-    const p = new Path2D();
-    p.moveTo(points[0].x + dx, points[0].y + dy);
-    for (let i = 1; i < points.length; i++) {
-      p.lineTo(points[i].x + dx, points[i].y + dy);
-    }
-    return p;
-  };
-
-  const ropePath = createPath();
-  const shadowPath = createPath(0, cordWidth * 0.8);
-
-  // Shadow 1
-  ctx.save();
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.10)';
-  ctx.lineWidth = cordWidth * 2.6;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  ctx.stroke(shadowPath);
-
-  // Shadow 2
-  ctx.strokeStyle = 'rgba(0, 0, 0, 0.14)';
-  ctx.lineWidth = cordWidth * 1.5;
-  ctx.stroke(shadowPath);
-  ctx.restore();
-
-  // Cord body gradient
-  ctx.save();
-  const grad = ctx.createLinearGradient(snapshot.anchor.x, snapshot.anchor.y, snapshot.charmCenter.x, snapshot.charmCenter.y);
-  grad.addColorStop(0, CharmColor.toCss(palette.secondary));
-  grad.addColorStop(1, CharmColor.toCss(palette.primary));
-
-  ctx.strokeStyle = grad;
-  ctx.lineWidth = cordWidth;
-  ctx.lineCap = 'round';
-  ctx.lineJoin = 'round';
-  ctx.stroke(ropePath);
-
-  // Cord twist
-  if (cordWidth > 1.4) {
-    const pitch = cordWidth * 1.5;
-    const across = cordWidth * 0.20;
-
-    // Light strand
-    ctx.save();
-    ctx.strokeStyle = CharmColor.toCss({ ...palette.light, a: 0.30 });
-    ctx.lineWidth = cordWidth * 0.55;
-    ctx.setLineDash([pitch * 0.42, pitch * 0.58]);
-    ctx.stroke(createPath(-across, -across));
-    ctx.restore();
-
-    // Deep strand
-    ctx.save();
-    ctx.strokeStyle = CharmColor.toCss({ ...palette.deep, a: 0.45 });
-    ctx.lineWidth = cordWidth * 0.45;
-    ctx.setLineDash([pitch * 0.34, pitch * 0.66]);
-    ctx.lineDashOffset = pitch * 0.5;
-    ctx.stroke(createPath(across, across));
-    ctx.restore();
-  }
-
-  // Highlight along edge
-  ctx.save();
-  ctx.strokeStyle = CharmColor.toCss({ ...palette.light, a: 0.38 });
-  ctx.lineWidth = Math.max(0.75, cordWidth * 0.3);
-  ctx.stroke(createPath(-cordWidth * 0.18, -cordWidth * 0.18));
-  ctx.restore();
-
-  ctx.restore();
+  const ropeStyle = currentCharm.ropeStyle || 'silk';
+  RopeRenderer.draw(ctx, {
+    points,
+    snapshot,
+    style: ropeStyle,
+    palette,
+    time: performance.now()
+  });
 }
 
 function drawBeads(snapshot) {
@@ -619,22 +556,9 @@ function drawCharm(snapshot) {
 function drawKnot(snapshot, palette) {
   const radius = snapshot.charmRadius;
   if (radius <= 1) return;
-  if (currentCharm.type === 'svg') return; // SVG has its own loop
-
-  const dirX = Math.cos(snapshot.charmAngle);
-  const dirY = Math.sin(snapshot.charmAngle);
-  const knotDist = radius * snapshot.charmKnotInset;
-  const kx = snapshot.charmCenter.x - (dirX * knotDist);
-  const ky = snapshot.charmCenter.y - (dirY * knotDist);
-  const ringRadius = radius * 0.2;
-
-  ctx.save();
-  ctx.beginPath();
-  ctx.arc(kx, ky, ringRadius, 0, Math.PI * 2);
-  ctx.strokeStyle = CharmColor.toCss({ ...palette.light, a: 0.9 });
-  ctx.lineWidth = Math.max(1, radius * 0.07);
-  ctx.stroke();
-  ctx.restore();
+  if (currentCharm.type === 'svg') return;
+  const ropeStyle = currentCharm.ropeStyle || 'silk';
+  RopeRenderer.drawKnotRing(ctx, snapshot, ropeStyle, palette);
 }
 
 // Animation Clock

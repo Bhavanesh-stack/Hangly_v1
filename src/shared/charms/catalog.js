@@ -282,6 +282,7 @@ const CharmCatalog = [
     radiusRatio: 0.280,
     knotInset: 0.94,
     sound: 'wave',
+    ropeStyle: 'ocean',
     beadCount: 3,
     bodyRun: 3,
     palette: {
@@ -304,6 +305,7 @@ const CharmCatalog = [
     radiusRatio: 0.175,
     knotInset: 0.94,
     sound: 'drum',
+    ropeStyle: 'pirate',
     beadCount: 2,
     bodyRun: 2,
     palette: {
@@ -324,6 +326,7 @@ const CharmCatalog = [
     radiusRatio: 0.165,
     knotInset: 0.94,
     sound: 'drum',
+    ropeStyle: 'pirate',
     beadCount: 2,
     bodyRun: 2,
     palette: {
@@ -344,6 +347,7 @@ const CharmCatalog = [
     radiusRatio: 0.165,
     knotInset: 0.94,
     sound: 'slash',
+    ropeStyle: 'bushido',
     beadCount: 2,
     bodyRun: 2,
     palette: {
@@ -364,6 +368,7 @@ const CharmCatalog = [
     radiusRatio: 0.165,
     knotInset: 0.94,
     sound: 'coin',
+    ropeStyle: 'ocean',
     beadCount: 2,
     bodyRun: 2,
     palette: {
@@ -384,6 +389,7 @@ const CharmCatalog = [
     radiusRatio: 0.165,
     knotInset: 0.94,
     sound: 'kick',
+    ropeStyle: 'flame',
     beadCount: 2,
     bodyRun: 2,
     palette: {

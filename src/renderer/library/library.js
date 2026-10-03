@@ -8,6 +8,7 @@ const { ClassicCharms } = require('../../shared/charms/classic-charms');
 const { RopeSimulation } = require('../../shared/physics/rope-simulation');
 const { RopeConfiguration } = require('../../shared/physics/rope-configuration');
 const { getCharmSvgPath, getCharmLibraryJsonPath } = require('../../shared/charms/asset-resolver');
+const { RopeRenderer } = require('../../shared/charms/rope-renderer');
 
 // Load metadata
 let libraryMetadata = { charms: [] };
@@ -39,6 +40,7 @@ const btnHang = document.getElementById('btn-hang-charm');
 const editSize = document.getElementById('edit-size');
 const editSizeVal = document.getElementById('edit-size-val');
 const editSound = document.getElementById('edit-sound');
+const editRopeStyle = document.getElementById('edit-rope-style');
 const editMass = document.getElementById('edit-mass');
 const editMassVal = document.getElementById('edit-mass-val');
 const btnTestSound = document.getElementById('btn-test-sound');
@@ -81,9 +83,10 @@ function getEffectiveMetrics(charm) {
   const custom = getCharmCustomization(charm.id);
   const scale = (custom && custom.scale !== undefined) ? custom.scale : 1.0;
   const sound = (custom && custom.sound) ? custom.sound : (charm.sound || 'soft');
+  const ropeStyle = (custom && custom.ropeStyle) ? custom.ropeStyle : (charm.ropeStyle || 'silk');
   const mass = (custom && custom.mass !== undefined) ? custom.mass : (charm.mass || 3.0);
   const radiusRatio = (charm.radiusRatio || 0.15) * scale;
-  return { scale, sound, mass, radiusRatio, knotInset: charm.knotInset || 0.94 };
+  return { scale, sound, ropeStyle, mass, radiusRatio, knotInset: charm.knotInset || 0.94 };
 }
 
 function saveCurrentCharmCustomization() {
@@ -92,13 +95,18 @@ function saveCurrentCharmCustomization() {
 
   const scale = parseInt(editSize.value, 10) / 100;
   const sound = editSound.value;
+  const ropeStyle = editRopeStyle.value;
   const mass = parseFloat(editMass.value);
 
   appSettings.overlay.charmCustomizations[selectedCharm.id] = {
     scale,
     sound,
+    ropeStyle,
     mass
   };
+
+  ipcRenderer.invoke('save-settings', appSettings);
+}
 
   ipcRenderer.invoke('save-settings', appSettings);
 }
@@ -205,6 +213,7 @@ function selectCharm(charm) {
   editSize.value = Math.round(metrics.scale * 100);
   editSizeVal.textContent = `${editSize.value}%`;
   editSound.value = metrics.sound;
+  editRopeStyle.value = metrics.ropeStyle || 'silk';
   editMass.value = metrics.mass.toFixed(1);
   editMassVal.textContent = `${metrics.mass.toFixed(2)}`;
 
@@ -244,6 +253,10 @@ editSize.addEventListener('input', () => {
 editSound.addEventListener('change', () => {
   detailSound.textContent = editSound.value.toUpperCase();
   soundPlayer.play(editSound.value, 0.9);
+  saveCurrentCharmCustomization();
+});
+
+editRopeStyle.addEventListener('change', () => {
   saveCurrentCharmCustomization();
 });
 
@@ -327,12 +340,19 @@ function previewLoop(time) {
   // Draw rope
   const pts = previewSim.curve.polyline(snap.cordLength);
   if (pts.length > 1) {
-    dctx.beginPath();
-    dctx.moveTo(pts[0].x, pts[0].y);
-    for (let i = 1; i < pts.length; i++) dctx.lineTo(pts[i].x, pts[i].y);
-    dctx.strokeStyle = '#c79e4d';
-    dctx.lineWidth = 2.5;
-    dctx.stroke();
+    const metrics = getEffectiveMetrics(selectedCharm);
+    const ropeStyle = editRopeStyle ? editRopeStyle.value : (metrics.ropeStyle || 'silk');
+    RopeRenderer.draw(dctx, {
+      points: pts,
+      snapshot: snap,
+      style: ropeStyle,
+      palette: selectedCharm.palette,
+      time: performance.now(),
+      scale: 1.0
+    });
+    if (selectedCharm.type !== 'svg') {
+      RopeRenderer.drawKnotRing(dctx, snap, ropeStyle, selectedCharm.palette);
+    }
   }
 
   // Draw charm
