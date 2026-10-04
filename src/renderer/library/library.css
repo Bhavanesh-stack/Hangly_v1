@@ -394,26 +394,52 @@ body {
   outline: none;
   cursor: pointer;
   width: 100%;
-  transition: border-color 0.15s;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .select-dropdown:focus {
   border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(212, 110, 36, 0.25);
 }
 
 .primary-btn {
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
   color: #fff;
   border: none;
-  padding: 10px;
-  border-radius: 6px;
+  padding: 10px 14px;
+  border-radius: 8px;
   font-weight: 600;
   font-size: 13px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
   margin-top: auto;
+  box-shadow: 0 4px 12px rgba(212, 110, 36, 0.3);
 }
 
 .primary-btn:hover {
-  background: var(--accent-light);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(212, 110, 36, 0.45);
+}
+
+.primary-btn:active {
+  transform: translateY(0);
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.28);
 }
