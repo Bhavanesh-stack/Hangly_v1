@@ -117,8 +117,8 @@
       "previewImage": "charm-preview-sunflower"
     },
     {
-      "id": "wave",
-      "name": "Ocean Wave",
+      "id": "wave2",
+      "name": "Wave 2",
       "region": "Japan and Pacific Rim",
       "category": "ritual",
       "description": "Inspired directly by Hokusai's woodblock print 'The Great Wave off Kanagawa', set within a circular medallion. Towering crests of Prussian blue and frothing sea-foam surge across a warm washi paper disc.",
@@ -190,7 +190,7 @@
     },
     {
       "id": "zoro",
-      "name: "Zoro",
+      "name": "Zoro",
       "region": "Grand Line / East Blue",
       "category": "onepiece",
       "description": "Roronoa Zoro, the master swordsman of the Straw Hats. Always napping with his iconic grin and three golden earrings, ready to cut down any obstacle.",

@@ -88,8 +88,8 @@ function getIconPath(filename) {
     path.join(__dirname, '..', '..', '..', 'assets', 'icons', filename),
     path.join(__dirname, '..', '..', 'Assets', 'Icons', filename),
     path.join(__dirname, '..', '..', 'assets', 'icons', filename),
-    path.join(process.cwd(), 'Assets', 'Icons'),
-    path.join(process.cwd(), 'assets', 'icons')
+    path.join(process.cwd(), 'Assets', 'Icons', filename),
+    path.join(process.cwd(), 'assets', 'icons', filename)
   ];
   if (process.resourcesPath) {
     candidates.push(

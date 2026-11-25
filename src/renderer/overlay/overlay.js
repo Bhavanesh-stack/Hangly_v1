@@ -134,6 +134,7 @@ function loadSvgCharm(charm) {
     if (!svgPath || !fs.existsSync(svgPath)) {
       console.warn('SVG file not found for charm:', charm.name, filename, svgPath);
       svgCache[charm.id] = { loaded: false };
+      delete pendingLoads[charm.id];
       return resolve(svgCache[charm.id]);
     }
 
@@ -261,8 +262,8 @@ let lastPointerTime = performance.now();
 let pointerVelocity = { x: 0, y: 0 };
 let clickThroughState = true; // window is currently ignoring mouse
 
-function setWindowIgnoreMouse(ignore) {
-  if (clickThroughState !== ignore) {
+function setWindowIgnoreMouse(ignore, force = false) {
+  if (force || clickThroughState !== ignore) {
     clickThroughState = ignore;
     ipcRenderer.send('set-ignore-mouse-events', ignore, { forward: true });
   }
@@ -580,13 +581,45 @@ sim.start();
 applyCharm(currentCharm, true);
 requestAnimationFrame(frameLoop);
 
+function syncClickThrough(force = false) {
+  if (!currentSettings?.overlay?.isClickThrough) {
+    setWindowIgnoreMouse(false, force);
+  } else {
+    setWindowIgnoreMouse(!isHovering && !isDragging, force);
+  }
+}
+
+function resetInteractionAndClock() {
+  if (isDragging) {
+    isDragging = false;
+    sim.endDrag();
+  }
+  isHovering = false;
+  canvas.style.cursor = 'default';
+  syncClickThrough(true);
+  lastFrameTime = performance.now();
+  sim.wake();
+}
+
+window.addEventListener('blur', resetInteractionAndClock);
+document.addEventListener('visibilitychange', () => {
+  if (!document.hidden) {
+    resetInteractionAndClock();
+  }
+});
+
 // IPC Handlers
+ipcRenderer.on('screen-unlocked', () => {
+  resetInteractionAndClock();
+});
+
 ipcRenderer.on('init-settings', (event, settings) => {
   currentSettings = settings;
   if (settings.sound) {
     soundPlayer.volume = settings.sound.volume ?? 1.0;
     soundPlayer.enabled = settings.sound.enabled ?? true;
   }
+  syncClickThrough();
   const charm = resolveCharm(settings.overlay.charmId);
   applyCharm(charm, true);
 });
@@ -597,15 +630,16 @@ ipcRenderer.on('update-settings', (event, newSettings) => {
     soundPlayer.volume = newSettings.sound.volume ?? 1.0;
     soundPlayer.enabled = newSettings.sound.enabled ?? true;
   }
+  syncClickThrough();
   const charmId = newSettings.overlay?.charmId || currentCharm.id;
   const charm = resolveCharm(charmId);
-  applyCharm(charm, false);
+  applyCharm(charm, true);
 });
 
 ipcRenderer.on('switch-charm', (event, charmId, customCharmData) => {
   let charm = resolveCharm(charmId);
   if ((!charm || charm.id !== charmId) && customCharmData) {
-    charm = customCharmData;
+    charm = getEffectiveCharm(customCharmData);
   }
   applyCharm(charm, false);
 });

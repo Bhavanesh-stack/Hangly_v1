@@ -1,7 +1,7 @@
 // src/main/main.js
 // Main process for Hangly Windows desktop application.
 
-const { app, BrowserWindow, ipcMain, screen, nativeImage } = require('electron');
+const { app, BrowserWindow, ipcMain, screen, nativeImage, powerMonitor } = require('electron');
 const path = require('path');
 const { SettingsStore } = require('./store');
 const { HanglyTray } = require('./tray');
@@ -19,6 +19,9 @@ let libraryWindow = null;
 let studioWindow = null;
 let tray = null;
 let cursorPollInterval = null;
+let isScreenLocked = false;
+let lockTimestamp = 0;
+let wasDesktopInaccessible = false;
 
 const settingsStore = new SettingsStore(app.getPath('userData'));
 const customCharmStore = new CustomCharmStore(app.getPath('userData'));
@@ -85,7 +88,7 @@ function createOverlayWindow() {
 
   overlayWindow.setAlwaysOnTop(true, 'screen-saver');
   overlayWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
-  overlayWindow.setIgnoreMouseEvents(true, { forward: true });
+  applyOverlayWindowSettings();
 
   overlayWindow.loadFile(path.join(__dirname, '..', 'renderer', 'overlay', 'index.html'));
 
@@ -101,25 +104,80 @@ function createOverlayWindow() {
   startCursorPolling();
 }
 
+function applyOverlayWindowSettings() {
+  if (!overlayWindow || overlayWindow.isDestroyed()) return;
+  const { overlay } = settingsStore.settings;
+  const opacity = typeof overlay.opacity === 'number'
+    ? Math.max(0.2, Math.min(1.0, overlay.opacity))
+    : 1.0;
+  overlayWindow.setOpacity(opacity);
+
+  if (overlay.isClickThrough) {
+    overlayWindow.setIgnoreMouseEvents(true, { forward: true });
+  } else {
+    overlayWindow.setIgnoreMouseEvents(false);
+  }
+}
+
+function restoreOverlayAfterUnlock() {
+  if (isScreenLocked || !settingsStore.settings.overlay.isEnabled) return;
+  if (!overlayWindow || overlayWindow.isDestroyed()) {
+    createOverlayWindow();
+    return;
+  }
+
+  overlayWindow.showInactive();
+  // Toggle alwaysOnTop so Windows DWM re-asserts HWND_TOPMOST after lock screen / UAC
+  overlayWindow.setAlwaysOnTop(false);
+  overlayWindow.setAlwaysOnTop(true, 'screen-saver');
+  overlayWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+  repositionOverlay();
+  applyOverlayWindowSettings();
+  overlayWindow.moveTop();
+  overlayWindow.webContents.invalidate();
+  overlayWindow.webContents.send('screen-unlocked');
+}
+
 function startCursorPolling() {
   if (cursorPollInterval) clearInterval(cursorPollInterval);
 
   cursorPollInterval = setInterval(() => {
     if (!overlayWindow || overlayWindow.isDestroyed()) return;
-    const cursor = screen.getCursorScreenPoint();
-    const winBounds = overlayWindow.getBounds();
+    try {
+      const cursor = screen.getCursorScreenPoint();
 
-    if (
-      cursor.x >= winBounds.x &&
-      cursor.x <= winBounds.x + winBounds.width &&
-      cursor.y >= winBounds.y &&
-      cursor.y <= winBounds.y + winBounds.height
-    ) {
-      const local = {
-        x: cursor.x - winBounds.x,
-        y: cursor.y - winBounds.y
-      };
-      overlayWindow.webContents.send('cursor-screen-check', local);
+      // Fallback unlock detection if Windows missed powerMonitor unlock-screen
+      if (isScreenLocked && Date.now() - lockTimestamp > 1500) {
+        isScreenLocked = false;
+        wasDesktopInaccessible = false;
+        restoreOverlayAfterUnlock();
+        return;
+      }
+
+      if (wasDesktopInaccessible) {
+        wasDesktopInaccessible = false;
+        restoreOverlayAfterUnlock();
+        return;
+      }
+
+      if (isScreenLocked || !overlayWindow.isVisible()) return;
+      const winBounds = overlayWindow.getBounds();
+
+      if (
+        cursor.x >= winBounds.x &&
+        cursor.x <= winBounds.x + winBounds.width &&
+        cursor.y >= winBounds.y &&
+        cursor.y <= winBounds.y + winBounds.height
+      ) {
+        const local = {
+          x: cursor.x - winBounds.x,
+          y: cursor.y - winBounds.y
+        };
+        overlayWindow.webContents.send('cursor-screen-check', local);
+      }
+    } catch (err) {
+      // Windows throws when desktop is locked or on secure desktop (UAC)
+      wasDesktopInaccessible = true;
     }
   }, 33); // ~30Hz polling
 }
@@ -130,21 +188,29 @@ function repositionOverlay() {
   overlayWindow.setBounds(newBounds);
 }
 
-function toggleOverlay() {
-  const current = settingsStore.settings.overlay.isEnabled;
-  settingsStore.save({ overlay: { isEnabled: !current } });
-
-  if (!current) {
-    if (!overlayWindow) {
+function syncOverlayVisibility() {
+  const isEnabled = settingsStore.settings.overlay.isEnabled;
+  if (isEnabled) {
+    if (!overlayWindow || overlayWindow.isDestroyed()) {
       createOverlayWindow();
     } else {
-      overlayWindow.show();
+      overlayWindow.showInactive();
+      overlayWindow.setAlwaysOnTop(true, 'screen-saver');
+      overlayWindow.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
+      repositionOverlay();
+      applyOverlayWindowSettings();
     }
   } else {
-    if (overlayWindow) {
+    if (overlayWindow && !overlayWindow.isDestroyed()) {
       overlayWindow.hide();
     }
   }
+}
+
+function toggleOverlay() {
+  const current = settingsStore.settings.overlay.isEnabled;
+  settingsStore.save({ overlay: { isEnabled: !current } });
+  syncOverlayVisibility();
   if (tray) tray.updateMenu();
 }
 
@@ -252,7 +318,9 @@ ipcMain.handle('get-settings', () => {
 
 ipcMain.handle('save-settings', (event, newSettings) => {
   const updated = settingsStore.save(newSettings);
+  syncOverlayVisibility();
   repositionOverlay();
+  applyOverlayWindowSettings();
   if (overlayWindow && !overlayWindow.isDestroyed()) {
     overlayWindow.webContents.send('update-settings', updated);
   }
@@ -270,7 +338,9 @@ ipcMain.handle('save-settings', (event, newSettings) => {
 
 ipcMain.handle('reset-settings', () => {
   const reset = settingsStore.reset();
+  syncOverlayVisibility();
   repositionOverlay();
+  applyOverlayWindowSettings();
   if (overlayWindow && !overlayWindow.isDestroyed()) {
     overlayWindow.webContents.send('update-settings', reset);
   }
@@ -285,7 +355,8 @@ ipcMain.handle('select-charm', (event, charmId) => {
   if (!overlayWindow || overlayWindow.isDestroyed()) {
     createOverlayWindow();
   } else {
-    overlayWindow.show();
+    overlayWindow.showInactive();
+    overlayWindow.setAlwaysOnTop(true, 'screen-saver');
   }
   setCharm(charmId);
   return settingsStore.settings;
@@ -369,6 +440,55 @@ app.whenReady().then(() => {
 
   screen.on('display-metrics-changed', () => {
     repositionOverlay();
+  });
+
+  screen.on('display-added', () => {
+    repositionOverlay();
+  });
+
+  screen.on('display-removed', () => {
+    repositionOverlay();
+  });
+
+  powerMonitor.on('lock-screen', () => {
+    isScreenLocked = true;
+    lockTimestamp = Date.now();
+    if (overlayWindow && !overlayWindow.isDestroyed() && overlayWindow.isVisible()) {
+      overlayWindow.hide();
+    }
+  });
+
+  powerMonitor.on('unlock-screen', () => {
+    isScreenLocked = false;
+    wasDesktopInaccessible = false;
+    restoreOverlayAfterUnlock();
+    // Re-apply after Windows DWM finishes transitioning from the lock screen
+    setTimeout(() => {
+      if (!isScreenLocked) restoreOverlayAfterUnlock();
+    }, 350);
+    setTimeout(() => {
+      if (!isScreenLocked) restoreOverlayAfterUnlock();
+    }, 1000);
+  });
+
+  powerMonitor.on('suspend', () => {
+    isScreenLocked = true;
+    lockTimestamp = Date.now();
+    if (overlayWindow && !overlayWindow.isDestroyed() && overlayWindow.isVisible()) {
+      overlayWindow.hide();
+    }
+  });
+
+  powerMonitor.on('resume', () => {
+    isScreenLocked = false;
+    wasDesktopInaccessible = false;
+    restoreOverlayAfterUnlock();
+    setTimeout(() => {
+      if (!isScreenLocked) restoreOverlayAfterUnlock();
+    }, 350);
+    setTimeout(() => {
+      if (!isScreenLocked) restoreOverlayAfterUnlock();
+    }, 1000);
   });
 });
 
